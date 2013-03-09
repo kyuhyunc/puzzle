@@ -8,5 +8,5 @@
 The grader should use the following procedure to compile and run the code:
 ```shell
 make
-./sn test.gml commands.txt output.gml
+./puzzle size initMoves seed
 ```
