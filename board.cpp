@@ -86,6 +86,7 @@ Board::~Board()
 Board::Board(const Board &b)
 {
 	tiles_ = new int[size_];
+	size_ = b.size_;
 	for(int i=0;i<size_;i++){
 		tiles_[i] = b.tiles_[i];
 	}	
@@ -95,6 +96,7 @@ Board::Board(const Board &b)
 Board::Board(int *tiles, int size)
 {
 	tiles_ = new int[size];
+	size_ = size;
 	for(int i=0;i<size;i++){
 		tiles_[i] = tiles[i];
 	}
@@ -150,6 +152,7 @@ std::map<int, Board*> Board::potentialMoves()
 		Board* potential_Board = new Board(temp_tiles, size_);
 		BoardList[temp_tiles[blankloc]] = potential_Board;
 	}
+	
 	// If west tile exists
 	if(blankloc % dim != 0){
 		int temp_tiles[size_];
@@ -173,7 +176,7 @@ std::map<int, Board*> Board::potentialMoves()
 		BoardList[temp_tiles[blankloc]] = potential_Board;
 	}
 	// If east tile exists
-	if(blankloc % dim != size_-1){
+	if(blankloc % dim != dim-1){
 		int temp_tiles[size_];
 		for(int i=0;i<size_;i++){
 			temp_tiles[i] = tiles_[i];
