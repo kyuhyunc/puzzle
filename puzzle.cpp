@@ -11,9 +11,9 @@ using namespace std;
 	 *  @section purpose Purpose/Overview
 	 *	  PA3 puzzle game assignment
 	 *	 @section requirements Requirements
-	 *	  1. STL classes may only be used where explicitly stated
-	 *	  2. Use Doxygen style comments in all of your classes
-	 *	  3. Although no points are dedicated to the proper use of git & GitHub,
+	 *	  1. STL classes may only be used where explicitly stated \n
+	 *	  2. Use Doxygen style comments in all of your classes \n
+	 *	  3. Although no points are dedicated to the proper use of git & GitHub, 
 	 *		  submissions not following the workflow will be penalized. That includes
 	 *		  proper closing of issues on your private tracker. 
 	 */

@@ -9,7 +9,7 @@
 class Board
 {
  public:
-  /**  default constructor */
+  /**  Default constructor */
   Board(); // Q:??
 
   /** Init a board of given size and scramble it with numInitMoves 
@@ -43,10 +43,11 @@ class Board
   bool operator!=(const Board& rhs) const;
   
   // Accessors
+  /** Returns tiles_ of a board */
   int* getTiles();
+  /** Returns the size of a board */
   int getSize();
   // Add any accessors
-
 
  private:
   int *tiles_;

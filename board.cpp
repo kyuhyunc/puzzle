@@ -7,11 +7,15 @@
 #include "board.h"
 using namespace std;
 
+/** Default constructor. provide documentation here */
+Board::Board()
+{
+  /*
+   * IMPLEMENT ME
+  */
+}
 
-/** Init a board of given size and scramble it with numInitMoves 
- * by moving the space tile with a randomly chosen direction N, W, S, E
- * some of which may be invalid, in which case we skip that move 
- * 
+/**  
  *  @param size Number of tiles for the game.  \
  *      Should be a perfect square (4, 16, 25)
  *  @param numInitMoves Number of tile moves to attempt to scramble the board
@@ -64,25 +68,9 @@ Board::Board(int size, int numInitMoves, int seed)
 	}
 }
 
-
-/** Default constructor. provide documentation here */
-Board::Board()
-{
-  /*
-   * IMPLEMENT ME
-  */
-}
-
-/** Default destructor. Delete dynamically allocated board tiles */
-Board::~Board()
-{
-  /*
-   * IMPLEMENT ME
-  */
-	delete [] tiles_;
-}
-
-/** Copy constructor. Using deep copy for copying game board*/
+/** Using deep copy for copying game board
+ *	@param b Right hand side board class
+ */
 Board::Board(const Board &b)
 {
 	tiles_ = new int[size_];
@@ -92,7 +80,10 @@ Board::Board(const Board &b)
 	}	
 }
 
-/** Anothor kind of copy constructor. Using deep copy for copying game board*/
+/** Using deep copy for copying game board
+ *	@param tiles Tiles of right hand side board class
+ *	@param size Size of right hand side board class
+ */
 Board::Board(int *tiles, int size)
 {
 	tiles_ = new int[size];
@@ -102,7 +93,18 @@ Board::Board(int *tiles, int size)
 	}
 }
 
-/** Swaps the blank with the specified tile */
+/** Delete dynamically allocated board tiles */
+Board::~Board()
+{
+  /*
+   * IMPLEMENT ME
+  */
+	delete [] tiles_;
+}
+
+/** Swaps the blank with the specified tile 
+ *	@param tile Value of one tile for moving to blank location	
+ */
 void Board::move(int tile){
 	int blankloc = -1;
 	int tileloc = -1;
@@ -190,7 +192,6 @@ std::map<int, Board*> Board::potentialMoves()
 	return BoardList;			
 }
 
-/** Returns true if the board is solved, false otherwise */
 bool Board::solved()
 {
 	int flag = 0;
