@@ -8,7 +8,10 @@ class PuzzleMove
 {
  public:
   // Constructor for starting Board of an A* search
-  PuzzleMove(Board &b);
+  /** Constructor for starting Board of an A* search
+   @ param b 
+   */
+  PuzzleMove(Board &b); // Q : ??
 
   // Constructor for subsequent search boards 
   // (i.e. those returned by Board::potentialMoves() )
@@ -34,6 +37,7 @@ class PuzzleMove
   Board *b_;      // Pointer to a board representing the updated state
   int g_;         // distance from the start board
   int h_;         // heuristic distance to the goal
+  int f_;			// g_ + h_ : f-score
   PuzzleMove *prev_;  // Pointer to parent PuzzleMove
 };
 
