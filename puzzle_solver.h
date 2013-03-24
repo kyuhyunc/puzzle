@@ -37,6 +37,7 @@ class PuzzleSolver
   Board b_;
   int expansions_;
   //**** Declare a List to store your solutions sequence of tiles to move
+  MyList<Board> solution;
 };
 
 #endif
