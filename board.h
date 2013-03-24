@@ -12,7 +12,7 @@ class Board
   /**  Default constructor */
   Board(); // Q:??
 
-  /** Init a board of given size and scramble it with numInitMoves 
+  /** Initialize a board of given size and scramble it with numInitMoves 
    * by moving the space tile with a randomly chosen direction N, W, S, E
    * some of which may be invalid, in which case we skip that move */
   Board(int size, int numInitMoves, int seed);
@@ -30,10 +30,14 @@ class Board
   void move(int tile);
 
   /** Generate potential moves and returns new boards
-   * Key=tile, Value=Ptr to corresponding Board */
+   * Key=tile, Value=Ptr to corresponding Board 
+   *	@return Return a set of map that has a key and board data
+   */
   std::map<int, Board*> potentialMoves(); 
 
-  /** Returns true if the board is solved, false otherwise */
+  /** Returns true if the board is solved, false otherwise
+   * @return True or False
+   */
   bool solved();
 
   // Operators
@@ -43,9 +47,9 @@ class Board
   bool operator!=(const Board& rhs) const;
   
   // Accessors
-  /** Returns tiles_ of a board */
+  /** @return Tiles of a board */
   int* getTiles();
-  /** Returns the size of a board */
+  /** @return Size of a board */
   int getSize();
   // Add any accessors
 
