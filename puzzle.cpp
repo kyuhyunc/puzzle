@@ -36,8 +36,12 @@ int main(int argc, char *argv[])
 	//**** Implement the gameplay here
 	//int *tiles = b.getTiles();
 	
-	map<int,Board*> BoardMap = b.potentialMoves();
+	PuzzleMove OpenList(b);
 	
+	
+	
+//	map<int,Board*> BoardMap = b.potentialMoves();
+/*	
 	while(b.solved() != true){
 		cout << b;
 		cout << "Enter tile number to move or -1 for a cheat: ";
@@ -48,6 +52,8 @@ int main(int argc, char *argv[])
 		cout << temp;
 //		b.move(tile);
 	}
+*/
 	
+
 	return 0;
 }
