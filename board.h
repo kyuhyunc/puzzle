@@ -4,12 +4,13 @@
 #include <iostream>
 #include <map>
 #include <functional>
+#include <cmath>
 
 class Board
 {
  public:
   /**  default constructor */
-  Board(); 
+  Board(); // Q:??
 
   /** Init a board of given size and scramble it with numInitMoves 
    * by moving the space tile with a randomly chosen direction N, W, S, E
@@ -63,7 +64,5 @@ struct BoardLessThan :
     return *b1 < *b2;
   }
 };
-
-
 
 #endif
