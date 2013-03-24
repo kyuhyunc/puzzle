@@ -25,16 +25,25 @@ PMMinList::~PMMinList()
  */
 void PMMinList::push(PuzzleMove* pm)
 {
-  std::list<PuzzleMove*>::iterator it = slist_.begin();
- 
-  //---- Add your implementation to iterate through the list
-  //---- to find the correct location to insert pm and then
-  //---- use the insert() method of std::List to insert it
-  //---- See http://www.cplusplus.com/reference/list/list/insert/
+	std::list<PuzzleMove*>::iterator it = slist_.begin();
 
+	//---- Add your implementation to iterate through the list
+	//---- to find the correct location to insert pm and then
+	//---- use the insert() method of std::List to insert it
+	//---- See http://www.cplusplus.com/reference/list/list/insert/
 
-
-
+	for(it=slist_.begin();it!=slist_.end();){
+		if(pm_->f_ <= it->f_){
+			++it;
+		}
+		else{
+			slist_.insert(it,pm);
+			break;
+		}		
+	}
+	
+	if(it == slist_.end())
+		slist_.push_back(pm);
 }
 
 /**
