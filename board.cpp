@@ -102,9 +102,8 @@ Board::~Board()
 	delete [] tiles_;
 }
 
-/** Swaps the blank with the specified tile 
- *	@param tile Value of one tile for moving to blank location	
- *	@return Nothing
+/** @param tile Value of one tile for moving to blank location	
+ *	 @return Nothing
  */
 void Board::move(int tile){
 	int blankloc = -1;

@@ -29,8 +29,8 @@ class Board
   /** Swaps the blank with the specified tile */
   void move(int tile);
 
-  /** Generate potential moves and returns new boards
-   * Key=tile, Value=Ptr to corresponding Board 
+  /** Generate potential moves and returns new boards \n
+   * (Key=tile, Value=Ptr to corresponding Board)
    *	@return Return a set of map that has a key and board data
    */
   std::map<int, Board*> potentialMoves(); 
