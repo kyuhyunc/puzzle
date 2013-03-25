@@ -9,8 +9,8 @@ all: puzzle
 puzzle : puzzle_solver.o puzzle_move.o board.o pmminlist.o puzzle_heur.o puzzle.o
 	@echo "Compiling and linking"
 	$(CC) $(CFLAGS) puzzle_solver.o puzzle_move.o board.o pmminlist.o puzzle_heur.o puzzle.o -o puzzle
-	rm *~
 	rm *.o
+	rm *~
 
 puzzle.o : puzzle_heur.h puzzle_solver.h board.h puzzle.cpp
 	$(CC) $(CFLAGS) -c puzzle.cpp

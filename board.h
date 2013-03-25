@@ -10,7 +10,7 @@ class Board
 {
  public:
   /**  Default constructor */
-  Board(); // Q:??
+  Board();
 
   /** Initialize a board of given size and scramble it with numInitMoves 
    * by moving the space tile with a randomly chosen direction N, W, S, E

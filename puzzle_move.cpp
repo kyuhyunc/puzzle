@@ -7,8 +7,8 @@ PuzzleMove::PuzzleMove(Board &b)
 //	OutOfPlaceHeuristic Out_Heur;
 		
 	tileMove_ = 0;
-//	b_ = &b;
-	b_ = new Board(b);
+	b_ = &b;
+//	b_ = new Board(b);
 	g_ = 0;
 	h_ = Man_Heur.compute(b.getTiles(), b.getSize());
 //	h_ = Out_Heur.compute(b.getTiles(), b.getSize());
@@ -20,11 +20,13 @@ PuzzleMove::PuzzleMove(Board &b)
 // (i.e. those returned by Board::potentialMoves() )
 PuzzleMove::PuzzleMove(int tile, Board *b, PuzzleMove *parent)
 {
+
 	ManhattanHeuristic Man_Heur;
 //	OutOfPlaceHeuristic Out_Heur;
 
 	tileMove_ = tile;
 	b_ = b;
+//	b_ = new Board(*b);
 	g_ = parent->g_ + 1;
 	h_ = Man_Heur.compute(b->getTiles(), b->getSize());
 //	h_ = Out_Heur.compute(b->getTiles(), b->getSize());
@@ -34,6 +36,7 @@ PuzzleMove::PuzzleMove(int tile, Board *b, PuzzleMove *parent)
 
 PuzzleMove::~PuzzleMove()
 {
+//	delete b_;
 }
 
 // Compare to PuzzleMoves based on f distance (needed for priority queue)

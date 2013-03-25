@@ -4,6 +4,7 @@
 #include "board.h"
 #include "puzzle_heur.h"
 #include "puzzle_solver.h"
+#include "pmminlist.h"
 
 using namespace std;
 
@@ -34,18 +35,38 @@ int main(int argc, char *argv[])
 	Board b(size,initMoves,seed);
 
 	//**** Implement the gameplay here
+
 // Milestone 3B test
-	/*
-	PuzzleMove A(b); // very first time
+
+	PuzzleMove *a1 = new PuzzleMove(b); // very first time
+
+
+	PuzzleMove *a2 = new PuzzleMove(2,a1->b_,a1);
+	PuzzleMove *a3 = new PuzzleMove(3,a1->b_,a1);
+	PuzzleMove *a4 = new PuzzleMove(4,a2->b_,a2);
+	PuzzleMove *a5 = new PuzzleMove(5,a2->b_,a2);
+	PuzzleMove *a6 = new PuzzleMove(6,a5->b_,a5);
 	
+	PMMinList OpenList;
 	
-	int size_ = b.potentialMoves().size();
-	PuzzleMove* B = new PuzzleMove[size_];
+	OpenList.push(a1);
+	OpenList.push(a2);
+	OpenList.push(a3);
+	OpenList.push(a4);
+	OpenList.push(a5);
+	OpenList.push(a6);
+
+	int listSize = OpenList.size();
 	
-	for(int i=0;i<size_;i++){
-		PuzzleMove B[i]
-	}*/
+	for(int i=0;i<listSize;i++){
+		PuzzleMove *temp = OpenList.top();
+		cout << temp->f_ << endl;
+		OpenList.pop();
+	}	
+
+
 	
+/*
 // Milestone 3A test	
 //	map<int,Board*> BoardMap = b.potentialMoves();
 	
@@ -59,7 +80,7 @@ int main(int argc, char *argv[])
 //		cout << temp;
 		b.move(tile);
 	}
- 
+*/
 	
 
 	return 0;
