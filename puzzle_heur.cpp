@@ -7,9 +7,12 @@ int ManhattanHeuristic::compute(int *tiles, int size)
 	int dim = static_cast<int>(sqrt(size));
 	
 	for(int i=0;i<size;i++){
+		temp = 0;
 		if(tiles[i] != i){
-			temp = abs(tiles[i]-i)/dim;
-			temp += abs(tiles[i]-i)%dim;
+			if(tiles[i] != 0){
+				temp = abs(tiles[i]-i)/dim;
+				temp += abs(tiles[i]-i)%dim;
+			}
 		}
 		h += temp;
 	}
