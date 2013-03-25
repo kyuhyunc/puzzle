@@ -34,25 +34,32 @@ int main(int argc, char *argv[])
 	Board b(size,initMoves,seed);
 
 	//**** Implement the gameplay here
-	//int *tiles = b.getTiles();
+// Milestone 3B test
+	/*
+	PuzzleMove A(b); // very first time
 	
-	PuzzleMove OpenList(b);
 	
+	int size_ = b.potentialMoves().size();
+	PuzzleMove* B = new PuzzleMove[size_];
 	
+	for(int i=0;i<size_;i++){
+		PuzzleMove B[i]
+	}*/
 	
+// Milestone 3A test	
 //	map<int,Board*> BoardMap = b.potentialMoves();
-/*	
+	
 	while(b.solved() != true){
 		cout << b;
 		cout << "Enter tile number to move or -1 for a cheat: ";
 		int tile = -1;
 		cin >> tile;
-		Board temp = *BoardMap[tile];
+//		Board temp = *BoardMap[tile];
 //		Board temp(BoardMap[tile]->getTiles(), BoardMap[tile]->getSize());
-		cout << temp;
-//		b.move(tile);
+//		cout << temp;
+		b.move(tile);
 	}
-*/
+ 
 	
 
 	return 0;

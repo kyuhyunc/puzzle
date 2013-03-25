@@ -11,7 +11,7 @@ class PuzzleMove
   /** Constructor for starting Board of an A* search
    @ param b 
    */
-  PuzzleMove(Board &b); // Q : ??
+  PuzzleMove(Board &b);
 
   // Constructor for subsequent search boards 
   // (i.e. those returned by Board::potentialMoves() )

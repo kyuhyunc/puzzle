@@ -10,9 +10,8 @@ using namespace std;
 /** Default constructor. provide documentation here */
 Board::Board()
 {
-  /*
-   * IMPLEMENT ME
-  */
+  size_ = 9;
+  tiles_ = new int[size_];
 }
 
 /**  

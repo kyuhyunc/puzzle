@@ -7,7 +7,8 @@ PuzzleMove::PuzzleMove(Board &b)
 //	OutOfPlaceHeuristic Out_Heur;
 		
 	tileMove_ = 0;
-	b_ = &b;
+//	b_ = &b;
+	b_ = new Board(b);
 	g_ = 0;
 	h_ = Man_Heur.compute(b.getTiles(), b.getSize());
 //	h_ = Out_Heur.compute(b.getTiles(), b.getSize());
