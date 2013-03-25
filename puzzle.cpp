@@ -39,8 +39,6 @@ int main(int argc, char *argv[])
 // Milestone 3B test
 
 	PuzzleMove *a1 = new PuzzleMove(b); // very first time
-
-
 	PuzzleMove *a2 = new PuzzleMove(2,a1->b_,a1);
 	PuzzleMove *a3 = new PuzzleMove(3,a1->b_,a1);
 	PuzzleMove *a4 = new PuzzleMove(4,a2->b_,a2);

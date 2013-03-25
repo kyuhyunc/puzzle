@@ -25,7 +25,11 @@ int OutOfPlaceHeuristic::compute(int *tiles, int size)
 	int h = 0;
 	
 	for(int i=0;i<size;i++){
-		if(tiles[i] != i)	h++;
+		if(tiles[i] != i){
+			if(tiles[i] != 0){
+				h++;
+			}
+		}
 	}
 	
 	return h;

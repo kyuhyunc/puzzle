@@ -3,15 +3,15 @@
 // First constructor
 PuzzleMove::PuzzleMove(Board &b)
 {
-	ManhattanHeuristic Man_Heur;
-//	OutOfPlaceHeuristic Out_Heur;
+//	ManhattanHeuristic Man_Heur;
+	OutOfPlaceHeuristic Out_Heur;
 		
 	tileMove_ = 0;
 	b_ = &b;
 //	b_ = new Board(b);
 	g_ = 0;
-	h_ = Man_Heur.compute(b.getTiles(), b.getSize());
-//	h_ = Out_Heur.compute(b.getTiles(), b.getSize());
+//	h_ = Man_Heur.compute(b.getTiles(), b.getSize());
+	h_ = Out_Heur.compute(b.getTiles(), b.getSize());
 	f_ = g_ + h_;
 	prev_ = NULL;
 }
@@ -21,15 +21,15 @@ PuzzleMove::PuzzleMove(Board &b)
 PuzzleMove::PuzzleMove(int tile, Board *b, PuzzleMove *parent)
 {
 
-	ManhattanHeuristic Man_Heur;
-//	OutOfPlaceHeuristic Out_Heur;
+//	ManhattanHeuristic Man_Heur;
+	OutOfPlaceHeuristic Out_Heur;
 
 	tileMove_ = tile;
 	b_ = b;
 //	b_ = new Board(*b);
 	g_ = parent->g_ + 1;
-	h_ = Man_Heur.compute(b->getTiles(), b->getSize());
-//	h_ = Out_Heur.compute(b->getTiles(), b->getSize());
+//	h_ = Man_Heur.compute(b->getTiles(), b->getSize());
+	h_ = Out_Heur.compute(b->getTiles(), b->getSize());
 	f_ = g_ + h_;
 	prev_ = parent;
 }
