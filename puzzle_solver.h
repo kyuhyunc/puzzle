@@ -25,7 +25,8 @@ class PuzzleSolver
 
   // Run the A* search returning -1 if no solution exists or
   //  the number of moves in the solution
-  int run(PuzzleHeuristic *ph);
+  //int run(PuzzleHeuristic *ph);
+  int run();
 
   //**** Return the solution List
  
@@ -38,6 +39,7 @@ class PuzzleSolver
   int expansions_;
   //**** Declare a List to store your solutions sequence of tiles to move
   MyList<Board> solution;
+  std::deque<int> trace;
 };
 
 #endif

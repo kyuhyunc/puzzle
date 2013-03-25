@@ -10,8 +10,8 @@ using namespace std;
 /** Default constructor. provide documentation here */
 Board::Board()
 {
-  size_ = 9;
-  tiles_ = new int[size_];
+  //size_ = 9;
+  //tiles_ = new int[size_];
 }
 
 /**  
@@ -282,6 +282,16 @@ bool Board::operator!=(const Board& rhs) const
 		return false;
 	else
 		return true;			
+}
+
+void Board::operator=(const Board& rhs)
+{
+	size_ = rhs.size_;
+	tiles_ = new int[size_];
+	
+	for(int i=0;i<size_;i++){
+		tiles_[i] = rhs.tiles_[i];
+	}
 }
 
 // Accessors

@@ -34,10 +34,31 @@ int main(int argc, char *argv[])
 
 	Board b(size,initMoves,seed);
 
+
 	//**** Implement the gameplay here
 
-// Milestone 3B test
 
+// Milestone 3C test	
+	Board temp;
+//	temp = b;
+	
+	PuzzleSolver cheat(b);
+	
+	while(b.solved() != true){
+		cout << b;
+		cout << "Enter tile number to move or -1 for a cheat: ";
+		int tile = -1;
+		cin >> tile;
+		if(tile == -1){
+			cheat.run();
+		}
+		else
+			b.move(tile);
+	}
+
+
+/*
+// Milestone 3B test
 	PuzzleMove *a1 = new PuzzleMove(b); // very first time
 	PuzzleMove *a2 = new PuzzleMove(2,a1->b_,a1);
 	PuzzleMove *a3 = new PuzzleMove(3,a1->b_,a1);
@@ -61,11 +82,10 @@ int main(int argc, char *argv[])
 		cout << temp->f_ << endl;
 		OpenList.pop();
 	}	
-
-
+*/
 	
 /*
-// Milestone 3A test	
+// Milestone 3A test
 //	map<int,Board*> BoardMap = b.potentialMoves();
 	
 	while(b.solved() != true){
@@ -74,7 +94,6 @@ int main(int argc, char *argv[])
 		int tile = -1;
 		cin >> tile;
 //		Board temp = *BoardMap[tile];
-//		Board temp(BoardMap[tile]->getTiles(), BoardMap[tile]->getSize());
 //		cout << temp;
 		b.move(tile);
 	}

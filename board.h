@@ -45,6 +45,7 @@ class Board
   bool operator==(const Board& rhs) const;
   bool operator<(const Board& rhs) const;
   bool operator!=(const Board& rhs) const;
+  void operator=(const Board& rhs);
   
   // Accessors
   /** @return Tiles of a board */
