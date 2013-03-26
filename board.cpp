@@ -98,7 +98,7 @@ Board::~Board()
   /*
    * IMPLEMENT ME
   */
-	delete [] tiles_;
+	//delete [] tiles_;
 }
 
 /** @param tile Value of one tile for moving to blank location	
@@ -153,7 +153,6 @@ std::map<int, Board*> Board::potentialMoves()
 		Board* potential_Board = new Board(temp_tiles, size_);
 		BoardList[temp_tiles[blankloc]] = potential_Board;
 	}
-	
 	// If west tile exists
 	if(blankloc % dim != 0){
 		int temp_tiles[size_];

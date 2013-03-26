@@ -14,9 +14,9 @@ PMMinList::PMMinList() : slist_()
  */
 PMMinList::~PMMinList()
 {
-	for(std::list<PuzzleMove*>::iterator it = slist_.begin();it!=slist_.end();++it){
+	/*for(std::list<PuzzleMove*>::iterator it = slist_.begin();it!=slist_.end();++it){
 		delete *it;
-	}	
+	}*/
 }
 
 /**
