@@ -28,9 +28,6 @@ class PuzzleMove
   //**** Add any other member functions you think appropriate
 
 
-
-
-
   // Data members can be public
  public:
   int tileMove_;  // tile moved to reach the Board b

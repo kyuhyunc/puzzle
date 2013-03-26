@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
 
 	int size, initMoves, seed;
 
+
 	size = atoi(argv[1]);
 	initMoves = atoi(argv[2]);
 	seed = atoi(argv[3]);
@@ -36,7 +37,7 @@ int main(int argc, char *argv[])
 
 
 	//**** Implement the gameplay here
-
+	int tile = 0;
 
 // Milestone 3C test	
 	Board temp;
@@ -47,10 +48,17 @@ int main(int argc, char *argv[])
 	while(b.solved() != true){
 		cout << b;
 		cout << "Enter tile number to move or -1 for a cheat: ";
-		int tile = -1;
 		cin >> tile;
 		if(tile == -1){
 			cheat.run();
+			deque<int> solution = cheat.get_solution();
+			int sol_size = solution.size();
+			cout << endl << "Try this sequence:";
+			for(int i=0;i<sol_size;i++){
+				cout << " " << solution.back();
+				solution.pop_back();
+			}
+			cout << endl << "(Expansion = " << cheat.getNumExpansions() << ")" << endl << endl;
 		}
 		else
 			b.move(tile);

@@ -30,33 +30,43 @@ int PuzzleSolver::run()
 	int num_moves = 0;
 	
 	openList.push(new PuzzleMove(b_));
-//	closeList.insert(&(b_));
+	closeList.insert(&(b_));
 	while(openList.empty() != true){
 		PuzzleMove *move = openList.top();
+		openList.pop();
 		closeList.insert(move->b_);
 		garbage.push_back(move);
 		if(move->b_->solved() == true){
 			// Trace path back to start
-			while(move->prev_ != NULL){
-				trace.push_back(move->tileMove_);
+			PuzzleMove *temp = move;
+			while(temp->prev_ != NULL){
+				trace.push_back(temp->tileMove_);
+				temp = temp->prev_;
+			//	cout << "1" << endl;
 			}
 			break;
 		}
 
 		BoardMap = move->b_->potentialMoves();
 		for(std::map<int,Board*>::iterator it=BoardMap.begin();it!=BoardMap.end();++it){
-			if(closeList.find(it->second) != closeList.end()){
+			if(closeList.find(it->second) == closeList.end()){
 				closeList.insert(it->second);
 				openList.push(new PuzzleMove(it->first,it->second,move));
 				expansions_ ++;
 			}		
+			//cout << "2" << endl;
 		}
 		num_moves ++;
+		//cout << "3" << endl;
 	}
 	
 	return num_moves;
 }
 
+deque<int> PuzzleSolver::get_solution()
+{
+	return trace;
+}
 
 int PuzzleSolver::getNumExpansions()
 {

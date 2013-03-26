@@ -29,7 +29,7 @@ class PuzzleSolver
   int run();
 
   //**** Return the solution List
- 
+  deque<int> get_solution(); 
 
   // Return how many expansions were performed in the search
   int getNumExpansions();
@@ -38,7 +38,7 @@ class PuzzleSolver
   Board b_;
   int expansions_;
   //**** Declare a List to store your solutions sequence of tiles to move
-  MyList<Board> solution;
+  //MyList<Board> solution;
   std::deque<int> trace;
 };
 
