@@ -1,6 +1,9 @@
 #include "puzzle_move.h"
 #include <iostream>
 
+// Board parameter in constructor will get the address dynamicaly allocated.
+// Thus b_ needs to be deallocated in destructor.
+
 // First constructor
 PuzzleMove::PuzzleMove(Board &b)
 {
@@ -8,8 +11,8 @@ PuzzleMove::PuzzleMove(Board &b)
 	OutOfPlaceHeuristic Out_Heur;
 		
 	tileMove_ = 0;
-	b_ = &b;
-//	b_ = new Board(b);
+//	b_ = &b;
+	b_ = new Board(b.getTiles(),b.getSize());
 	g_ = 0;
 //	h_ = Man_Heur.compute(b.getTiles(), b.getSize());
 //	h_ = Out_Heur.compute(b.getTiles(), b.getSize());
@@ -27,18 +30,20 @@ PuzzleMove::PuzzleMove(int tile, Board *b, PuzzleMove *parent)
 
 	tileMove_ = tile;
 	b_ = b;
-//	b_ = new Board(*b);
+//	b_ = new Board(b->getTiles(),b->getSize());
 	g_ = parent->g_ + 1;
 //	h_ = Man_Heur.compute(b->getTiles(), b->getSize());
 //	h_ = Out_Heur.compute(b->getTiles(), b->getSize());
 //	f_ = g_ + h_;
+//	prev_ = new PuzzleMove(parent->tileMove_, parent->b_, parent->prev_);
 	prev_ = parent;
 }
 
 PuzzleMove::~PuzzleMove()
 {
-  	std::cout << "puzzle move destructor" << std::endl;
-//	delete b_;
+  	std::cout << "puzzlemove destructor" << std::endl;
+	delete b_;
+//	delete prev_;
 
 }
 

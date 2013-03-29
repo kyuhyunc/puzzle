@@ -33,6 +33,9 @@ class MyList {
 		int capacity_;
 };
 
+/** Default constructor 
+ * Initialize capacity, size, and date
+ */
 template <typename T>
 MyList<T>::MyList()
 {
@@ -41,6 +44,9 @@ MyList<T>::MyList()
 	data = new T[capacity_];
 }
 
+/** Constructor 
+ * Initialize capacity, size, and date when capacity is given
+ */
 template <typename T>
 MyList<T>::MyList(int capacity)
 {
@@ -49,12 +55,17 @@ MyList<T>::MyList(int capacity)
 	data = new T[capacity_];
 }
 
+/**  Destructor */
 template <typename T>
 MyList<T>::~MyList()
 {
 	delete [] data;
 }
 
+/**  Push back new value to the list
+ * @param newval New value that will be inserted at the back of list
+ * @return Nothing
+ */
 template <typename T>
 void MyList<T>::push_back(T newval)
 {
@@ -77,6 +88,10 @@ void MyList<T>::push_back(T newval)
 	}
 }
 
+/**  Return the value at particular location
+ * @param loc Loaction number
+ * @return Value at the location
+ */
 // exception : 1. if loc is bigger or smaller than the current size
 template <typename T>
 T& MyList<T>::at(int loc)
@@ -98,12 +113,20 @@ T& MyList<T>::at(int loc)
 	return data[loc];
 }
 
+/**  Return the size of mylist
+ *	@return Size of mylist
+ */
 template <typename T>
 int MyList<T>::size() const
 {
 	return size_;
 }
 
+/**  Remove particular value if that value is in the list. \n
+ * Return true if that value exist, and false if does not exist.
+ * @param val Value that will be deleted if the same value is in the list
+ * @return True or False according to the result
+ */
 template <typename T>
 bool MyList<T>::remove(T val)
 {
@@ -119,6 +142,10 @@ bool MyList<T>::remove(T val)
 	return flag;				
 }
 
+/** Return the value at particular location and remove it
+ * @param loc Location that will be returned and deleted
+ * @return Value at entered location
+ */
 // exception : 1. if loc is bigger than the current size
 template <typename T>					
 T MyList<T>::pop(int loc)
@@ -136,6 +163,7 @@ T MyList<T>::pop(int loc)
 	return temp;
 }
 
+/** Operater for [] */
 // add "&" in return type as a reference variable -> can make a change as well, instead of just printing
 template <typename T>					
 T& MyList<T>::operator[](int loc)
@@ -143,6 +171,9 @@ T& MyList<T>::operator[](int loc)
 	return at(loc); // it already has a throw for exception case
 }
 
+/** Return the biggest value in the list
+ *	@return Maximum value
+ */
 template <typename T>
 T MyList<T>::max() const
 {
@@ -154,6 +185,9 @@ T MyList<T>::max() const
 	return max;
 }
 
+/** Return the smallest value in the list
+ *	@return Smallest value
+ */
 template <typename T>
 T MyList<T>::min() const
 {
@@ -165,6 +199,7 @@ T MyList<T>::min() const
 	return min;
 }
 
+/** Delete the most back of list */
 template <typename T>
 void MyList<T>::pop_back()
 {

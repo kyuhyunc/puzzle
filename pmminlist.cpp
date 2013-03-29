@@ -15,10 +15,16 @@ PMMinList::PMMinList() : slist_()
  */
 PMMinList::~PMMinList()
 {
-	/*for(std::list<PuzzleMove*>::iterator it = slist_.begin();it!=slist_.end();++it){
-		delete *it;
-	}*/
   	std::cout << "pmminlist destructor" <<   	std::endl;
+  	
+  	std::cout << "openList size: " << slist_.size() << std::endl;
+  	for(std::list<PuzzleMove*>::iterator it = slist_.begin();it!=slist_.end();++it){
+		delete *it;
+	}
+
+	slist_.clear();
+	
+	//std::cout << "openList size: " << slist_.size() << std::endl;
 }
 
 /**
@@ -53,9 +59,7 @@ void PMMinList::push(PuzzleMove* pm)
 }
 
 /**
- * Adds the value val to the internal list in sorted
- * order from smallest to largest
- * @param val Value to add to the sorted PuzzleMove list
+ * Removes the top (minimum) item
  * @return nothing
  */
 void PMMinList::pop()
@@ -64,10 +68,8 @@ void PMMinList::pop()
 }
 
 /**
- * Adds the value val to the internal list in sorted
- * order from smallest to largest
- * @param val Value to add to the sorted PuzzleMove list
- * @return reference to the minimum-scored PuzzleMove*
+ * Returns the top (minimum) item
+ * @return pointer to the minimum-scored PuzzleMove
  */
 PuzzleMove* PMMinList::top()
 {

@@ -3,7 +3,7 @@
 #include <set>
 #include <algorithm>
 #include "puzzle_solver.h"
-#include "pmminlist.h"
+
 
 using namespace std;
 
@@ -17,23 +17,38 @@ PuzzleSolver::~PuzzleSolver()
 	// deallocate mylist and boardset
 //	for(BoardSet::iterator it=BoardSet.begin();it!=slist_.end();++it)
   	std::cout << "puzzlesolver destructor" << std::endl;
+  	// deallocating Boardset which has data of dynamically allocated Boards
+  	
+	//cout << "closeList size: " << closeList.size() << endl;
+	//for(BoardSet::iterator it=closeList.begin();it!=closeList.end();++it){
+ 	//	delete (*it);
+	//}
+  	closeList.clear();
+
+//  	cout << "openList size: " << openList.size() << endl;
+//  	cout << "closeList size: " << closeList.size() << endl;
+
+  	
+  	int size = garbage.size();
+  	cout << "garbage size: " << size << endl;
+	for(int i=0;i<size;++i){
+  		delete garbage[0];
+  		garbage.pop(0);
+  	}
+
+  	//cout << "garvage size: " << size << endl;
 }
 
 int PuzzleSolver::run(PuzzleHeuristic *ph)
 //int PuzzleSolver::run()
 {
-	PMMinList openList;
-	BoardSet closeList;
-
-	MyList<PuzzleMove*> garbage;
 	map<int,Board*> BoardMap;
 		
 	int num_moves = 0;
-	
-	//b_.h_ = *ph(b_.getTiles(), b_.getSize());
-	
+
 	openList.push(new PuzzleMove(b_));
-	closeList.insert(&(b_));
+//	closeList.insert(new Board(b_.getTiles(),b_.getSize()));
+
 	while(openList.empty() != true){
 		PuzzleMove *move = openList.top();
 		openList.pop();
@@ -47,25 +62,33 @@ int PuzzleSolver::run(PuzzleHeuristic *ph)
 				temp = temp->prev_;
 			//	cout << "1" << endl;
 			}
-			break;
+			return num_moves;
+//			break;
 		}
 
-		BoardMap = move->b_->potentialMoves();
+		BoardMap = move->b_->potentialMoves(); // Dynamically allocated Boards will be deleted in the closeList
 		for(std::map<int,Board*>::iterator it=BoardMap.begin();it!=BoardMap.end();++it){
 			if(closeList.find(it->second) == closeList.end()){
 				closeList.insert(it->second);
-				PuzzleMove *temp = new PuzzleMove(it->first,it->second,move);
-				temp->h_ = ph->compute(it->second->getTiles(), it->second->getSize());
+				PuzzleMove *temp = new PuzzleMove(it->first,it->second,move); // this will be deleted in the openList
+				temp->h_ = ph->compute(it->second->getTiles(), it->second->getSize()); // computing h score
+				//garbage.push_back(temp);
 				openList.push(temp);
 				expansions_ ++;
 			}		
 			//cout << "2" << endl;
+		
 		}
+		
 		num_moves ++;
 		//cout << "3" << endl;
 	}
 	
-	return num_moves;
+	cout << "openList size: " << openList.size() << endl;
+	cout << "closeList size: " << closeList.size() << endl;
+	cout << "garbage size: " << garbage.size() << endl;
+	
+	return -1;
 }
 
 deque<int> PuzzleSolver::get_solution()

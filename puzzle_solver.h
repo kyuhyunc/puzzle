@@ -8,30 +8,34 @@
 #include "puzzle_move.h"
 #include "puzzle_heur.h"
 #include "mylist.h"
+#include "pmminlist.h"
 
 class PuzzleSolver
 {
  public:
-  //*** Typedef for the closed-list set.  Declare your closed list variable as
-  //***   BoardSet closedlist; 
-  //*** when you write your code for the run() funciton
+  /** Typedef for the closed-list set. */
   typedef std::set<Board *, BoardLessThan> BoardSet;
 
-  // Constructor (makes a copy of the Board and stores it in _b
+  /** Constructor (makes a copy of the Board and stores it in _b */
   PuzzleSolver(const Board &b);
 
-  // Destructor
+  /** Destructor */
   ~PuzzleSolver();
 
-  // Run the A* search returning -1 if no solution exists or
-  //  the number of moves in the solution
+  /** Run the A* search returning -1 if no solution exists or
+   *  the number of moves in the solution
+   *	@param ph Method of calculating h score
+   *	@return -1 if no solution, number of move otherwise
+   */
   int run(PuzzleHeuristic *ph);
   //int run();
 
-  //**** Return the solution List
+  /** Return the list of solution tile number */
   deque<int> get_solution(); 
 
-  // Return how many expansions were performed in the search
+  /** Return how many expansions were performed in the search
+   * @return Number of expansions
+   */
   int getNumExpansions();
 
  private:
@@ -40,6 +44,12 @@ class PuzzleSolver
   //**** Declare a List to store your solutions sequence of tiles to move
   //MyList<Board> solution;
   std::deque<int> trace;
+
+  MyList<PuzzleMove*> garbage;
+  PMMinList openList;  
+  BoardSet closeList;
+
+
 };
 
 #endif

@@ -1,0 +1,169 @@
+\hypertarget{classMyList}{\section{\-My\-List$<$ \-T $>$ \-Class \-Template \-Reference}
+\label{classMyList}\index{\-My\-List$<$ T $>$@{\-My\-List$<$ T $>$}}
+}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMyList_aaa11039853c7adb2fbcb770eab8b7305}{\-My\-List} ()
+\item 
+\hyperlink{classMyList_a43e0aa06b56b08ab65d9f8b7086aeb92}{\-My\-List} (int capacity)
+\item 
+\hyperlink{classMyList_aa622b9fb3e108b8b8c298ef1996dd256}{$\sim$\-My\-List} ()
+\item 
+void \hyperlink{classMyList_a55eebaa813ab6e221b5a7c25c790c9d2}{push\-\_\-back} (\-T newval)
+\item 
+\-T \& \hyperlink{classMyList_aede5c62a87c09cd4c7a36ad34d55fb9d}{at} (int loc)
+\item 
+int \hyperlink{classMyList_a290dc305556aadc0d4c68b456987a7d0}{size} () const 
+\item 
+bool \hyperlink{classMyList_a7f8a0f53d5153886cb5d6dcca9a07ff3}{remove} (\-T val)
+\item 
+\-T \hyperlink{classMyList_aca4ff0b35241e2a7e3953b123621e2fb}{pop} (int loc)
+\item 
+\-T \& \hyperlink{classMyList_ac042422a2d7dcc3fb90eda17f5e2970a}{operator\mbox{[}$\,$\mbox{]}} (int loc)
+\item 
+\-T \hyperlink{classMyList_a4f422fc82b3b0a94788d3792d4dba57c}{max} () const 
+\item 
+\-T \hyperlink{classMyList_a8718b2b826ee315d3f730cf52193b11e}{min} () const 
+\item 
+void \hyperlink{classMyList_a6e671ba282372c9280fbdb1b0852cd80}{pop\-\_\-back} ()
+\end{DoxyCompactItemize}
+\subsubsection*{template$<$typename \-T$>$ class My\-List$<$ T $>$}
+
+
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classMyList_aaa11039853c7adb2fbcb770eab8b7305}{\index{\-My\-List@{\-My\-List}!\-My\-List@{\-My\-List}}
+\index{\-My\-List@{\-My\-List}!MyList@{\-My\-List}}
+\subsubsection[{\-My\-List}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ {\bf \-My\-List}$<$ \-T $>$\-::{\bf \-My\-List} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classMyList_aaa11039853c7adb2fbcb770eab8b7305}
+\-Default constructor \-Initialize capacity, size, and date \hypertarget{classMyList_a43e0aa06b56b08ab65d9f8b7086aeb92}{\index{\-My\-List@{\-My\-List}!\-My\-List@{\-My\-List}}
+\index{\-My\-List@{\-My\-List}!MyList@{\-My\-List}}
+\subsubsection[{\-My\-List}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ {\bf \-My\-List}$<$ \-T $>$\-::{\bf \-My\-List} (
+\begin{DoxyParamCaption}
+\item[{int}]{capacity}
+\end{DoxyParamCaption}
+)}}\label{classMyList_a43e0aa06b56b08ab65d9f8b7086aeb92}
+\-Constructor \-Initialize capacity, size, and date when capacity is given \hypertarget{classMyList_aa622b9fb3e108b8b8c298ef1996dd256}{\index{\-My\-List@{\-My\-List}!$\sim$\-My\-List@{$\sim$\-My\-List}}
+\index{$\sim$\-My\-List@{$\sim$\-My\-List}!MyList@{\-My\-List}}
+\subsubsection[{$\sim$\-My\-List}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ {\bf \-My\-List}$<$ \-T $>$\-::$\sim${\bf \-My\-List} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classMyList_aa622b9fb3e108b8b8c298ef1996dd256}
+\-Destructor 
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classMyList_aede5c62a87c09cd4c7a36ad34d55fb9d}{\index{\-My\-List@{\-My\-List}!at@{at}}
+\index{at@{at}!MyList@{\-My\-List}}
+\subsubsection[{at}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ \-T \& {\bf \-My\-List}$<$ \-T $>$\-::{\bf at} (
+\begin{DoxyParamCaption}
+\item[{int}]{loc}
+\end{DoxyParamCaption}
+)}}\label{classMyList_aede5c62a87c09cd4c7a36ad34d55fb9d}
+\-Return the value at particular location 
+\begin{DoxyParams}{\-Parameters}
+{\em loc} & \-Loaction number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+\-Value at the location 
+\end{DoxyReturn}
+\hypertarget{classMyList_a4f422fc82b3b0a94788d3792d4dba57c}{\index{\-My\-List@{\-My\-List}!max@{max}}
+\index{max@{max}!MyList@{\-My\-List}}
+\subsubsection[{max}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ \-T {\bf \-My\-List}$<$ \-T $>$\-::{\bf max} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classMyList_a4f422fc82b3b0a94788d3792d4dba57c}
+\-Return the biggest value in the list \begin{DoxyReturn}{\-Returns}
+\-Maximum value 
+\end{DoxyReturn}
+\hypertarget{classMyList_a8718b2b826ee315d3f730cf52193b11e}{\index{\-My\-List@{\-My\-List}!min@{min}}
+\index{min@{min}!MyList@{\-My\-List}}
+\subsubsection[{min}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ \-T {\bf \-My\-List}$<$ \-T $>$\-::{\bf min} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classMyList_a8718b2b826ee315d3f730cf52193b11e}
+\-Return the smallest value in the list \begin{DoxyReturn}{\-Returns}
+\-Smallest value 
+\end{DoxyReturn}
+\hypertarget{classMyList_ac042422a2d7dcc3fb90eda17f5e2970a}{\index{\-My\-List@{\-My\-List}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
+\index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!MyList@{\-My\-List}}
+\subsubsection[{operator[]}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ \-T \& {\bf \-My\-List}$<$ \-T $>$\-::operator\mbox{[}$\,$\mbox{]} (
+\begin{DoxyParamCaption}
+\item[{int}]{loc}
+\end{DoxyParamCaption}
+)}}\label{classMyList_ac042422a2d7dcc3fb90eda17f5e2970a}
+\-Operater for \mbox{[}\mbox{]} \hypertarget{classMyList_aca4ff0b35241e2a7e3953b123621e2fb}{\index{\-My\-List@{\-My\-List}!pop@{pop}}
+\index{pop@{pop}!MyList@{\-My\-List}}
+\subsubsection[{pop}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ \-T {\bf \-My\-List}$<$ \-T $>$\-::{\bf pop} (
+\begin{DoxyParamCaption}
+\item[{int}]{loc}
+\end{DoxyParamCaption}
+)}}\label{classMyList_aca4ff0b35241e2a7e3953b123621e2fb}
+\-Return the value at particular location and remove it 
+\begin{DoxyParams}{\-Parameters}
+{\em loc} & \-Location that will be returned and deleted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+\-Value at entered location 
+\end{DoxyReturn}
+\hypertarget{classMyList_a6e671ba282372c9280fbdb1b0852cd80}{\index{\-My\-List@{\-My\-List}!pop\-\_\-back@{pop\-\_\-back}}
+\index{pop\-\_\-back@{pop\-\_\-back}!MyList@{\-My\-List}}
+\subsubsection[{pop\-\_\-back}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ void {\bf \-My\-List}$<$ \-T $>$\-::{\bf pop\-\_\-back} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classMyList_a6e671ba282372c9280fbdb1b0852cd80}
+\-Delete the most back of list \hypertarget{classMyList_a55eebaa813ab6e221b5a7c25c790c9d2}{\index{\-My\-List@{\-My\-List}!push\-\_\-back@{push\-\_\-back}}
+\index{push\-\_\-back@{push\-\_\-back}!MyList@{\-My\-List}}
+\subsubsection[{push\-\_\-back}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \-T$>$ void {\bf \-My\-List}$<$ \-T $>$\-::{\bf push\-\_\-back} (
+\begin{DoxyParamCaption}
+\item[{\-T}]{newval}
+\end{DoxyParamCaption}
+)}}\label{classMyList_a55eebaa813ab6e221b5a7c25c790c9d2}
+\-Push back new value to the list 
+\begin{DoxyParams}{\-Parameters}
+{\em newval} & \-New value that will be inserted at the back of list \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+\-Nothing 
+\end{DoxyReturn}
+\hypertarget{classMyList_a7f8a0f53d5153886cb5d6dcca9a07ff3}{\index{\-My\-List@{\-My\-List}!remove@{remove}}
+\index{remove@{remove}!MyList@{\-My\-List}}
+\subsubsection[{remove}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \-T$>$ bool {\bf \-My\-List}$<$ \-T $>$\-::{\bf remove} (
+\begin{DoxyParamCaption}
+\item[{\-T}]{val}
+\end{DoxyParamCaption}
+)}}\label{classMyList_a7f8a0f53d5153886cb5d6dcca9a07ff3}
+\-Remove particular value if that value is in the list. \par
+ \-Return true if that value exist, and false if does not exist. 
+\begin{DoxyParams}{\-Parameters}
+{\em val} & \-Value that will be deleted if the same value is in the list \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+\-True or \-False according to the result 
+\end{DoxyReturn}
+\hypertarget{classMyList_a290dc305556aadc0d4c68b456987a7d0}{\index{\-My\-List@{\-My\-List}!size@{size}}
+\index{size@{size}!MyList@{\-My\-List}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ int {\bf \-My\-List}$<$ \-T $>$\-::{\bf size} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classMyList_a290dc305556aadc0d4c68b456987a7d0}
+\-Return the size of mylist \begin{DoxyReturn}{\-Returns}
+\-Size of mylist 
+\end{DoxyReturn}
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+mylist.\-h\end{DoxyCompactItemize}

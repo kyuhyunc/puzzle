@@ -28,13 +28,11 @@ int main(int argc, char *argv[])
 
 	int size, initMoves, seed;
 
-
 	size = atoi(argv[1]);
 	initMoves = atoi(argv[2]);
 	seed = atoi(argv[3]);
 
 	Board b(size,initMoves,seed);
-
 
 	//**** Implement the gameplay here
 	int tile = 0;
@@ -65,7 +63,7 @@ int main(int argc, char *argv[])
 		else
 			b.move(tile);
 	}
-
+	
 
 /*
 // Milestone 3B test

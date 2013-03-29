@@ -1,0 +1,108 @@
+\hypertarget{classPMMinList}{\section{\-P\-M\-Min\-List \-Class \-Reference}
+\label{classPMMinList}\index{\-P\-M\-Min\-List@{\-P\-M\-Min\-List}}
+}
+
+
+{\ttfamily \#include $<$pmminlist.\-h$>$}
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPMMinList_a1fa1ed01cc65ea09cdd9bd10198fabee}{\-P\-M\-Min\-List} ()
+\item 
+\hyperlink{classPMMinList_a886c0f8fe079a8353c23da4ff163beae}{$\sim$\-P\-M\-Min\-List} ()
+\item 
+int \hyperlink{classPMMinList_a692220d438ffab3cf6729de3dc38c1fb}{size} () const 
+\item 
+bool \hyperlink{classPMMinList_a1c148a978af1a6ea964ee7141a80855e}{empty} () const 
+\item 
+void \hyperlink{classPMMinList_aafa81672d5dd017bf5e6f76b65022d21}{push} (\hyperlink{classPuzzleMove}{\-Puzzle\-Move} $\ast$pm)
+\item 
+void \hyperlink{classPMMinList_a77fa8f64f75cc6c1469688928d372089}{pop} ()
+\item 
+\hyperlink{classPuzzleMove}{\-Puzzle\-Move} $\ast$ \hyperlink{classPMMinList_a6a04fe787c09097ecd3a76428a3524ba}{top} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\hyperlink{classPMMinList}{\-P\-M\-Min\-List} implements a sorted list of \-Puzzle\-Moves based on their f-\/score (from smallest to largest) 
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classPMMinList_a1fa1ed01cc65ea09cdd9bd10198fabee}{\index{\-P\-M\-Min\-List@{\-P\-M\-Min\-List}!\-P\-M\-Min\-List@{\-P\-M\-Min\-List}}
+\index{\-P\-M\-Min\-List@{\-P\-M\-Min\-List}!PMMinList@{\-P\-M\-Min\-List}}
+\subsubsection[{\-P\-M\-Min\-List}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-P\-M\-Min\-List\-::\-P\-M\-Min\-List} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classPMMinList_a1fa1ed01cc65ea09cdd9bd10198fabee}
+\-Default \-Constructor \hypertarget{classPMMinList_a886c0f8fe079a8353c23da4ff163beae}{\index{\-P\-M\-Min\-List@{\-P\-M\-Min\-List}!$\sim$\-P\-M\-Min\-List@{$\sim$\-P\-M\-Min\-List}}
+\index{$\sim$\-P\-M\-Min\-List@{$\sim$\-P\-M\-Min\-List}!PMMinList@{\-P\-M\-Min\-List}}
+\subsubsection[{$\sim$\-P\-M\-Min\-List}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-P\-M\-Min\-List\-::$\sim$\-P\-M\-Min\-List} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classPMMinList_a886c0f8fe079a8353c23da4ff163beae}
+\-Destructor 
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classPMMinList_a1c148a978af1a6ea964ee7141a80855e}{\index{\-P\-M\-Min\-List@{\-P\-M\-Min\-List}!empty@{empty}}
+\index{empty@{empty}!PMMinList@{\-P\-M\-Min\-List}}
+\subsubsection[{empty}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf \-P\-M\-Min\-List\-::empty} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{classPMMinList_a1c148a978af1a6ea964ee7141a80855e}
+\-Returns true if the list is empty \hypertarget{classPMMinList_a77fa8f64f75cc6c1469688928d372089}{\index{\-P\-M\-Min\-List@{\-P\-M\-Min\-List}!pop@{pop}}
+\index{pop@{pop}!PMMinList@{\-P\-M\-Min\-List}}
+\subsubsection[{pop}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-M\-Min\-List\-::pop} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classPMMinList_a77fa8f64f75cc6c1469688928d372089}
+\-Removes the minimum scored (front) puzzle move
+
+\-Removes the top (minimum) item \begin{DoxyReturn}{\-Returns}
+nothing 
+\end{DoxyReturn}
+\hypertarget{classPMMinList_aafa81672d5dd017bf5e6f76b65022d21}{\index{\-P\-M\-Min\-List@{\-P\-M\-Min\-List}!push@{push}}
+\index{push@{push}!PMMinList@{\-P\-M\-Min\-List}}
+\subsubsection[{push}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-M\-Min\-List\-::push} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Puzzle\-Move} $\ast$}]{pm}
+\end{DoxyParamCaption}
+)}}\label{classPMMinList_aafa81672d5dd017bf5e6f76b65022d21}
+\-Adds a puzzle move to the sorted list
+
+\-Adds the value val to the internal list in sorted order from smallest to largest (if 
+\begin{DoxyParams}{\-Parameters}
+{\em val} & \-Value to add to the sorted \hyperlink{classPuzzleMove}{\-Puzzle\-Move} list \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+nothing 
+\end{DoxyReturn}
+\hypertarget{classPMMinList_a692220d438ffab3cf6729de3dc38c1fb}{\index{\-P\-M\-Min\-List@{\-P\-M\-Min\-List}!size@{size}}
+\index{size@{size}!PMMinList@{\-P\-M\-Min\-List}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf \-P\-M\-Min\-List\-::size} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{classPMMinList_a692220d438ffab3cf6729de3dc38c1fb}
+\-Returns the size of items in the list \hypertarget{classPMMinList_a6a04fe787c09097ecd3a76428a3524ba}{\index{\-P\-M\-Min\-List@{\-P\-M\-Min\-List}!top@{top}}
+\index{top@{top}!PMMinList@{\-P\-M\-Min\-List}}
+\subsubsection[{top}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Puzzle\-Move} $\ast$ {\bf \-P\-M\-Min\-List\-::top} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classPMMinList_a6a04fe787c09097ecd3a76428a3524ba}
+\-Returns the \hyperlink{classPuzzleMove}{\-Puzzle\-Move} with the lowest score
+
+\-Returns the top (minimum) item \begin{DoxyReturn}{\-Returns}
+pointer to the minimum-\/scored \hyperlink{classPuzzleMove}{\-Puzzle\-Move} 
+\end{DoxyReturn}
+
+
+\-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+pmminlist.\-h\item 
+pmminlist.\-cpp\end{DoxyCompactItemize}

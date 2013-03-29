@@ -1,0 +1,181 @@
+\hypertarget{classBoard}{\section{\-Board \-Class \-Reference}
+\label{classBoard}\index{\-Board@{\-Board}}
+}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classBoard_a9ee491d4fea680cf69b033374a9fdfcb}{\-Board} ()
+\item 
+\hyperlink{classBoard_a434d72861e7cee4ddbff4975d4522ff0}{\-Board} (int size, int num\-Init\-Moves, int seed)
+\item 
+\hyperlink{classBoard_ac77f209904bb37545295c17649a9dc17}{\-Board} (const \hyperlink{classBoard}{\-Board} \&b)
+\item 
+\hyperlink{classBoard_a97919e1594a034a83d6b18a6dd1c8b47}{\-Board} (int $\ast$tiles, int size)
+\item 
+\hyperlink{classBoard_af73f45730119a1fd8f6670f53f959e68}{$\sim$\-Board} ()
+\item 
+void \hyperlink{classBoard_aef09885273fef4c3fa3d80284936e873}{move} (int tile)
+\item 
+std\-::map$<$ int, \hyperlink{classBoard}{\-Board} $\ast$ $>$ \hyperlink{classBoard_a69149b8091bfaf02a394bedb9ff5f57f}{potential\-Moves} ()
+\item 
+bool \hyperlink{classBoard_aa2170b9bd685aae34f2c285add6da859}{solved} ()
+\item 
+\hypertarget{classBoard_acfdb9fa0c980de10be68aa082f31bda5}{bool {\bfseries operator==} (const \hyperlink{classBoard}{\-Board} \&rhs) const }\label{classBoard_acfdb9fa0c980de10be68aa082f31bda5}
+
+\item 
+\hypertarget{classBoard_a162027718b714192d52f8d3aa71359c3}{bool {\bfseries operator$<$} (const \hyperlink{classBoard}{\-Board} \&rhs) const }\label{classBoard_a162027718b714192d52f8d3aa71359c3}
+
+\item 
+\hypertarget{classBoard_a2724182ffc7179d2eee30d55baa64923}{bool {\bfseries operator!=} (const \hyperlink{classBoard}{\-Board} \&rhs) const }\label{classBoard_a2724182ffc7179d2eee30d55baa64923}
+
+\item 
+\hypertarget{classBoard_ad764a298abc603b9346a91e0cf857bcc}{void {\bfseries operator=} (const \hyperlink{classBoard}{\-Board} \&rhs)}\label{classBoard_ad764a298abc603b9346a91e0cf857bcc}
+
+\item 
+int $\ast$ \hyperlink{classBoard_a233cff437806895ee615dc67e3736780}{get\-Tiles} ()
+\item 
+int \hyperlink{classBoard_af093d8ac43989ad95dc03c714335b8e5}{get\-Size} ()
+\end{DoxyCompactItemize}
+\subsection*{\-Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classBoard_aa45abc56ade7ca27e1a665852b5530a3}{std\-::ostream \& {\bfseries operator$<$$<$} (std\-::ostream \&os, const \hyperlink{classBoard}{\-Board} \&b)}\label{classBoard_aa45abc56ade7ca27e1a665852b5530a3}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classBoard_a9ee491d4fea680cf69b033374a9fdfcb}{\index{\-Board@{\-Board}!\-Board@{\-Board}}
+\index{\-Board@{\-Board}!Board@{\-Board}}
+\subsubsection[{\-Board}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Board\-::\-Board} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classBoard_a9ee491d4fea680cf69b033374a9fdfcb}
+\-Default constructor \hypertarget{classBoard_a434d72861e7cee4ddbff4975d4522ff0}{\index{\-Board@{\-Board}!\-Board@{\-Board}}
+\index{\-Board@{\-Board}!Board@{\-Board}}
+\subsubsection[{\-Board}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Board\-::\-Board} (
+\begin{DoxyParamCaption}
+\item[{int}]{size, }
+\item[{int}]{num\-Init\-Moves, }
+\item[{int}]{seed}
+\end{DoxyParamCaption}
+)}}\label{classBoard_a434d72861e7cee4ddbff4975d4522ff0}
+\-Initialize a board of given size and scramble it with num\-Init\-Moves by moving the space tile with a randomly chosen direction \-N, \-W, \-S, \-E some of which may be invalid, in which case we skip that move
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em size} & \-Number of tiles for the game. $\backslash$ \-Should be a perfect square (4, 16, 25) \\
+\hline
+{\em num\-Init\-Moves} & \-Number of tile moves to attempt to scramble the board \\
+\hline
+{\em seed} & \-Use to seed the random number generator (srand) \\
+\hline
+\end{DoxyParams}
+\hypertarget{classBoard_ac77f209904bb37545295c17649a9dc17}{\index{\-Board@{\-Board}!\-Board@{\-Board}}
+\index{\-Board@{\-Board}!Board@{\-Board}}
+\subsubsection[{\-Board}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Board\-::\-Board} (
+\begin{DoxyParamCaption}
+\item[{const {\bf \-Board} \&}]{b}
+\end{DoxyParamCaption}
+)}}\label{classBoard_ac77f209904bb37545295c17649a9dc17}
+\-Copy constructor
+
+\-Using deep copy for copying game board 
+\begin{DoxyParams}{\-Parameters}
+{\em b} & \-Right hand side board class \\
+\hline
+\end{DoxyParams}
+\hypertarget{classBoard_a97919e1594a034a83d6b18a6dd1c8b47}{\index{\-Board@{\-Board}!\-Board@{\-Board}}
+\index{\-Board@{\-Board}!Board@{\-Board}}
+\subsubsection[{\-Board}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Board\-::\-Board} (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{tiles, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}\label{classBoard_a97919e1594a034a83d6b18a6dd1c8b47}
+\-Another kind of \char`\"{}copy\char`\"{} constructor
+
+\-Using deep copy for copying game board 
+\begin{DoxyParams}{\-Parameters}
+{\em tiles} & \-Tiles of right hand side board class \\
+\hline
+{\em size} & \-Size of right hand side board class \\
+\hline
+\end{DoxyParams}
+\hypertarget{classBoard_af73f45730119a1fd8f6670f53f959e68}{\index{\-Board@{\-Board}!$\sim$\-Board@{$\sim$\-Board}}
+\index{$\sim$\-Board@{$\sim$\-Board}!Board@{\-Board}}
+\subsubsection[{$\sim$\-Board}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Board\-::$\sim$\-Board} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classBoard_af73f45730119a1fd8f6670f53f959e68}
+\-Destructor
+
+\-Delete dynamically allocated board tiles 
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classBoard_af093d8ac43989ad95dc03c714335b8e5}{\index{\-Board@{\-Board}!get\-Size@{get\-Size}}
+\index{get\-Size@{get\-Size}!Board@{\-Board}}
+\subsubsection[{get\-Size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf \-Board\-::get\-Size} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classBoard_af093d8ac43989ad95dc03c714335b8e5}
+\begin{DoxyReturn}{\-Returns}
+\-Size of a board 
+\end{DoxyReturn}
+\hypertarget{classBoard_a233cff437806895ee615dc67e3736780}{\index{\-Board@{\-Board}!get\-Tiles@{get\-Tiles}}
+\index{get\-Tiles@{get\-Tiles}!Board@{\-Board}}
+\subsubsection[{get\-Tiles}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ {\bf \-Board\-::get\-Tiles} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classBoard_a233cff437806895ee615dc67e3736780}
+\begin{DoxyReturn}{\-Returns}
+\-Tiles of a board 
+\end{DoxyReturn}
+\hypertarget{classBoard_aef09885273fef4c3fa3d80284936e873}{\index{\-Board@{\-Board}!move@{move}}
+\index{move@{move}!Board@{\-Board}}
+\subsubsection[{move}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Board\-::move} (
+\begin{DoxyParamCaption}
+\item[{int}]{tile}
+\end{DoxyParamCaption}
+)}}\label{classBoard_aef09885273fef4c3fa3d80284936e873}
+\-Swaps the blank with the specified tile
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em tile} & \-Value of one tile for moving to blank location \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+\-Nothing 
+\end{DoxyReturn}
+\hypertarget{classBoard_a69149b8091bfaf02a394bedb9ff5f57f}{\index{\-Board@{\-Board}!potential\-Moves@{potential\-Moves}}
+\index{potential\-Moves@{potential\-Moves}!Board@{\-Board}}
+\subsubsection[{potential\-Moves}]{\setlength{\rightskip}{0pt plus 5cm}std\-::map$<$ int, {\bf \-Board} $\ast$ $>$ {\bf \-Board\-::potential\-Moves} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classBoard_a69149b8091bfaf02a394bedb9ff5f57f}
+\-Generate potential moves and returns new boards \par
+ (\-Key=tile, \-Value=\-Ptr to corresponding \hyperlink{classBoard}{\-Board}) \begin{DoxyReturn}{\-Returns}
+\-Return a set of map that has a key and board data 
+\end{DoxyReturn}
+\hypertarget{classBoard_aa2170b9bd685aae34f2c285add6da859}{\index{\-Board@{\-Board}!solved@{solved}}
+\index{solved@{solved}!Board@{\-Board}}
+\subsubsection[{solved}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf \-Board\-::solved} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classBoard_aa2170b9bd685aae34f2c285add6da859}
+\-Returns true if the board is solved, false otherwise \begin{DoxyReturn}{\-Returns}
+\-True or \-False 
+\end{DoxyReturn}
+
+
+\-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+board.\-h\item 
+board.\-cpp\end{DoxyCompactItemize}

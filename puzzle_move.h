@@ -13,8 +13,9 @@ class PuzzleMove
    */
   PuzzleMove(Board &b);
 
-  // Constructor for subsequent search boards 
-  // (i.e. those returned by Board::potentialMoves() )
+  /** Constructor for subsequent search boards 
+   * (i.e. those returned by Board::potentialMoves() )
+   */
   PuzzleMove(int tile, Board *b, PuzzleMove *parent);
 
   // Destructor

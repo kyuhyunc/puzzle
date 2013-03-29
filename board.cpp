@@ -7,7 +7,6 @@
 #include "board.h"
 using namespace std;
 
-/** Default constructor. provide documentation here */
 Board::Board()
 {
   //size_ = 9;
@@ -99,7 +98,7 @@ Board::~Board()
    * IMPLEMENT ME
   */
   	cout << "board.h destructor" << endl;
-	//delete [] tiles_;
+	delete [] tiles_;
 }
 
 /** @param tile Value of one tile for moving to blank location	
