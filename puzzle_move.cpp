@@ -44,7 +44,6 @@ PuzzleMove::~PuzzleMove()
   	std::cout << "puzzlemove destructor" << std::endl;
 	delete b_;
 //	delete prev_;
-
 }
 
 // Compare to PuzzleMoves based on f distance (needed for priority queue)

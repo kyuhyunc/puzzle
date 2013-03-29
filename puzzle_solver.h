@@ -46,10 +46,6 @@ class PuzzleSolver
   std::deque<int> trace;
 
   MyList<PuzzleMove*> garbage;
-  PMMinList openList;  
-  BoardSet closeList;
-
-
 };
 
 #endif
