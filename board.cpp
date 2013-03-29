@@ -97,7 +97,7 @@ Board::~Board()
   /*
    * IMPLEMENT ME
   */
-  	cout << "board.h destructor" << endl;
+  	//cout << "board.h destructor" << endl;
 	delete [] tiles_;
 }
 

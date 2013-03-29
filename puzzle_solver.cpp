@@ -16,7 +16,7 @@ PuzzleSolver::~PuzzleSolver()
 {
 	// deallocate mylist and boardset
 	//for(BoardSet::iterator it=BoardSet.begin();it!=slist_.end();++it)
-  	std::cout << "puzzlesolver destructor" << std::endl;
+  	//std::cout << "puzzlesolver destructor" << std::endl;
   	// deallocating Boardset which has data of dynamically allocated Boards
   	
 	//cout << "closeList size: " << closeList.size() << endl;
@@ -66,16 +66,17 @@ int PuzzleSolver::run(PuzzleHeuristic *ph)
 			//	cout << "1" << endl;
 			}
 
-			cout << "openList size: " << openList.size() << endl;
-			cout << "closeList size: " << closeList.size() << endl;
-			cout << "garbage size: " << garbage.size() << endl;
+			//cout << "openList size: " << openList.size() << endl;
+			//cout << "closeList size: " << closeList.size() << endl;
+			//cout << "garbage size: " << garbage.size() << endl;
 
-			cout << "num_moves: " << num_moves << endl;
+			//cout << "num_moves: " << num_moves << endl;
+			
 			return num_moves;
 			//break;
 		}
 
-		BoardMap = move->b_->potentialMoves(); // Dynamically allocated Boards will be deleted in the closeList
+		BoardMap = move->b_->potentialMoves(); // Dynamically allocated Boards will be deleted in garbage destructor
 		for(std::map<int,Board*>::iterator it=BoardMap.begin();it!=BoardMap.end();++it){
 			if(closeList.find(it->second) == closeList.end()){
 				closeList.insert(it->second);

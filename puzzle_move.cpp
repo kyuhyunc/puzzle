@@ -41,7 +41,7 @@ PuzzleMove::PuzzleMove(int tile, Board *b, PuzzleMove *parent)
 
 PuzzleMove::~PuzzleMove()
 {
-  	std::cout << "puzzlemove destructor" << std::endl;
+  	//std::cout << "puzzlemove destructor" << std::endl;
 	delete b_;
 //	delete prev_;
 }

@@ -15,9 +15,9 @@ PMMinList::PMMinList() : slist_()
  */
 PMMinList::~PMMinList()
 {
-  	std::cout << "pmminlist destructor" <<   	std::endl;
+  	//std::cout << "pmminlist destructor" <<   	std::endl;
   	
-  	std::cout << "openList size: " << slist_.size() << std::endl;
+  	//std::cout << "openList size: " << slist_.size() << std::endl;
   	for(std::list<PuzzleMove*>::iterator it = slist_.begin();it!=slist_.end();++it){
 		delete *it;
 	}
