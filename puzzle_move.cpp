@@ -1,4 +1,5 @@
 #include "puzzle_move.h"
+#include <iostream>
 
 // First constructor
 PuzzleMove::PuzzleMove(Board &b)
@@ -11,8 +12,8 @@ PuzzleMove::PuzzleMove(Board &b)
 //	b_ = new Board(b);
 	g_ = 0;
 //	h_ = Man_Heur.compute(b.getTiles(), b.getSize());
-	h_ = Out_Heur.compute(b.getTiles(), b.getSize());
-	f_ = g_ + h_;
+//	h_ = Out_Heur.compute(b.getTiles(), b.getSize());
+//	f_ = g_ + h_;
 	prev_ = NULL;
 }
 
@@ -29,14 +30,16 @@ PuzzleMove::PuzzleMove(int tile, Board *b, PuzzleMove *parent)
 //	b_ = new Board(*b);
 	g_ = parent->g_ + 1;
 //	h_ = Man_Heur.compute(b->getTiles(), b->getSize());
-	h_ = Out_Heur.compute(b->getTiles(), b->getSize());
-	f_ = g_ + h_;
+//	h_ = Out_Heur.compute(b->getTiles(), b->getSize());
+//	f_ = g_ + h_;
 	prev_ = parent;
 }
 
 PuzzleMove::~PuzzleMove()
 {
+  	std::cout << "puzzle move destructor" << std::endl;
 //	delete b_;
+
 }
 
 // Compare to PuzzleMoves based on f distance (needed for priority queue)

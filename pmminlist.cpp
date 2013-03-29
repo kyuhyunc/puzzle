@@ -1,5 +1,6 @@
 #include "puzzle_move.h"
 #include "pmminlist.h"
+#include <iostream>
 
 /**
  * Default Constructor
@@ -17,6 +18,7 @@ PMMinList::~PMMinList()
 	/*for(std::list<PuzzleMove*>::iterator it = slist_.begin();it!=slist_.end();++it){
 		delete *it;
 	}*/
+  	std::cout << "pmminlist destructor" <<   	std::endl;
 }
 
 /**
@@ -35,6 +37,8 @@ void PMMinList::push(PuzzleMove* pm)
 	//---- See http://www.cplusplus.com/reference/list/list/insert/
 
 	for(it=slist_.begin();it!=slist_.end();){
+		pm->f_ = (pm->g_) + (pm->h_);
+		(*it)->f_ = ((*it)->g_) + ((*it)->h_);
 		if(pm->f_ >= (*it)->f_){
 			++it;
 		}

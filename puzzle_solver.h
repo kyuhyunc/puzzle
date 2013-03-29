@@ -25,8 +25,8 @@ class PuzzleSolver
 
   // Run the A* search returning -1 if no solution exists or
   //  the number of moves in the solution
-  //int run(PuzzleHeuristic *ph);
-  int run();
+  int run(PuzzleHeuristic *ph);
+  //int run();
 
   //**** Return the solution List
   deque<int> get_solution(); 
