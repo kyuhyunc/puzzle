@@ -41,7 +41,6 @@ int main(int argc, char *argv[])
 //	Board temp;
 //	temp = b;
 	
-	PuzzleSolver cheat(b);
 	ManhattanHeuristic Man_Heur;
 	OutOfPlaceHeuristic Out_Heur;
 	
@@ -50,6 +49,7 @@ int main(int argc, char *argv[])
 		cout << "Enter tile number to move or -1 for a cheat: ";
 		cin >> tile;
 		if(tile == -1){
+			PuzzleSolver cheat(b);
 			cheat.run(&Man_Heur); // or Out_Heur
 			deque<int> solution = cheat.get_solution();
 			int sol_size = solution.size();

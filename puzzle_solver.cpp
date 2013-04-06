@@ -28,12 +28,12 @@ PuzzleSolver::~PuzzleSolver()
 	//cout << "closeList size: " << closeList.size() << endl;
 
   	
-  	int size = garbage.size();
+  int size = garbage.size();
   	//cout << "garbage size: " << size << endl;
 	for(int i=0;i<size;++i){
   		delete garbage[0];
   		garbage.pop(0);
-  	}
+  }
 
   	//cout << "garvage size: " << garbage.size() << endl;
 }
@@ -48,13 +48,15 @@ int PuzzleSolver::run(PuzzleHeuristic *ph)
 		
 	int num_moves = 0;
 
-	openList.push(new PuzzleMove(b_));
-//	closeList.insert(new Board(b_.getTiles(),b_.getSize()));
+	PuzzleMove *firstMove = new PuzzleMove(b_);
+
+	openList.push(firstMove);
+	closeList.insert(firstMove->b_);
 	
 	while(openList.empty() != true){
 		PuzzleMove *move = openList.top();
 		openList.pop();
-		closeList.insert(move->b_); // save board to closeList
+		//closeList.insert(move->b_); // save board to closeList
 		garbage.push_back(move);	// save Puzzlemove to garbage list
 		if(move->b_->solved() == true){
 			// Trace path back to start
@@ -66,9 +68,9 @@ int PuzzleSolver::run(PuzzleHeuristic *ph)
 			//	cout << "1" << endl;
 			}
 
-			//cout << "openList size: " << openList.size() << endl;
-			//cout << "closeList size: " << closeList.size() << endl;
-			//cout << "garbage size: " << garbage.size() << endl;
+			cout << "openList size: " << openList.size() << endl;
+			cout << "closeList size: " << closeList.size() << endl;
+			cout << "garbage size: " << garbage.size() << endl;
 
 			//cout << "num_moves: " << num_moves << endl;
 			
@@ -79,19 +81,21 @@ int PuzzleSolver::run(PuzzleHeuristic *ph)
 		BoardMap = move->b_->potentialMoves(); // Dynamically allocated Boards will be deleted in garbage destructor
 		for(std::map<int,Board*>::iterator it=BoardMap.begin();it!=BoardMap.end();++it){
 			if(closeList.find(it->second) == closeList.end()){
-				closeList.insert(it->second);
 				PuzzleMove *temp = new PuzzleMove(it->first,it->second,move); // this will be deleted in the openList
 				temp->h_ = ph->compute(it->second->getTiles(), it->second->getSize()); // computing h score
 				//garbage.push_back(temp);
+				closeList.insert(it->second);
 				openList.push(temp);
 				expansions_ ++;
 			}		
+			else
+				delete it->second;
 			//cout << "2" << endl;
 		}
 		//BoardMap.clear();
 		
 		num_moves ++;
-		//cout << "3" << endl;
+		cout << "3" << endl;
 	}
 	
 	return -1;
