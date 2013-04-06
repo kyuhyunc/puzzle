@@ -46,7 +46,7 @@ class PuzzleSolver
   std::deque<int> trace;
 
   MyList<PuzzleMove*> garbage;
-     BoardSet closeList;
+  BoardSet closeList;
 };
 
 #endif

@@ -71,8 +71,8 @@ Board::Board(int size, int numInitMoves, int seed)
  */
 Board::Board(const Board &b)
 {
-	tiles_ = new int[size_];
 	size_ = b.size_;
+	tiles_ = new int[size_];
 	for(int i=0;i<size_;i++){
 		tiles_[i] = b.tiles_[i];
 	}	
