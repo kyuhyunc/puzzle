@@ -1,12 +1,13 @@
 #include "guitile.h"
 
-GUITile::GUITile(int nx, int ny, int w, int h, int n) :
+GUITile::GUITile(int nx, int ny, int w, int h, int n, QString Qn) :
 	QGraphicsRectItem(nx, ny, w, h) {
 	x = nx;
 	y = ny;
 	width = w;
 	height = h;
 	number = n;
+	Qnumber.setText(Qn);
 }
 
 void GUITile::setX( int nx )
@@ -33,3 +34,8 @@ int GUITile::getNumber()
 {
 	return number;
 }
+/*
+QGraphicsSimpleTextItem GUITile::getQnumber()
+{
+	return Qnumber;
+}*/

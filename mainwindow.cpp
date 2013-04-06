@@ -157,7 +157,6 @@ void MainWindow::createBoard()
 	b = new Board(b_);
 	int *tiles = b->getTiles();
 	
-	QList<GUITile*> tileList;
 	GUITile *tile;
 	
 	int length = 0;
@@ -167,28 +166,31 @@ void MainWindow::createBoard()
 	if(size == 9){
 		// if size is 9, size of each tile is 96
 		length = (96*3)/2;
-		for(int i=0;i<size;i++){
-			tile = new GUITile(length*(i%dim),length*(i/dim),length,length,tiles[i]); // creating tiles
-			if(tiles[i] == 0)
-				tile->setBrush(blkBrush);
-			else
-				tile->setBrush(blueBrush);
-			scene->addItem(tile);
-		}
 	}
-	
 	else if(size == 16){
 		// if size is 16, then size of each tile is 72
 		length = (72*3)/2;
-		for(int i=0;i<size;i++){
-			tile = new GUITile(length*(i%dim),length*(i/dim),length,length,tiles[i]); // creating tiles
-			if(tiles[i] == 0)
-				tile->setBrush(blkBrush);
-			else
-				tile->setBrush(blueBrush);
-			scene->addItem(tile);
-		}	
 	}
+
+	
+	// display initial board
+	for(int i=0;i<size;i++){
+		QString Qnumber;
+		Qnumber.setNum(tiles[i]);
+		// Don't need to dynamically allocate it.??? yes, lets save these into temp list and delete 
+		tile = new GUITile(length*(i%dim),length*(i/dim),length,length,tiles[i], Qnumber); // creating tiles
+		tile->Qnumber.setPos( length*(i%dim)+(length/2), length*(i/dim)+(length/2) );
+		
+		if(tiles[i] == 0)
+			tile->setBrush(blkBrush);
+		else
+			tile->setBrush(blueBrush);
+		scene->addItem(tile);
+		scene->addItem(&tile->Qnumber);
+
+		Qtiles.push_back(tile);
+	}
+	
 }
  
 void MainWindow::gameStart()

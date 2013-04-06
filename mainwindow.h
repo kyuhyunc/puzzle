@@ -17,7 +17,7 @@
 #include <QRadioButton>
 #include <QListView>
 #include <QString>
-#include <QGraphicsSimpleTextItem>
+#include <QGraphicsItem>
 
 #include <stdlib.h>
 #include <iostream>
@@ -85,6 +85,8 @@ private:
 		
 		int size, initMoves, seed;
 		Board *b;
+		 
+		QList<GUITile*> Qtiles;
 		 
 public slots:
     void gameStart();
