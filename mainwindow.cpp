@@ -36,6 +36,7 @@ MainWindow::MainWindow()  {
 	// error message
 	errMsg = new QTextEdit;
 	errMsg->setMinimumHeight(30);
+	errMsg->setReadOnly(true);
 
 	// placing layouts and widgets in the main layout by using gridlayout
 	layout->addLayout(topLayout,0,0);
@@ -57,6 +58,8 @@ MainWindow::MainWindow()  {
 	
 	// connecting quit button to terminate the program
 	connect(quitGame, SIGNAL(clicked()), qApp, SLOT(quit()));
+	
+	//tile->installEventFilter(this);
 
 }
 
@@ -134,17 +137,6 @@ QListView *MainWindow::createSolution()
 	return solList;
 }
 
-/*
-//QTextEdit *MainWindow::getErrMsg(QString msg)
-QTextEdit *MainWindow::getErrMsg()
-{
-//	QTextEdit *errMsg = new QTextEdit(msg);
-	QTextEdit *errMsg = new QTextEdit;
-	
-	errMsg->setMinimumHeight(30);
-	
-	return errMsg;	
-}*/
 
 void MainWindow::createBoard()
 {
@@ -152,12 +144,13 @@ void MainWindow::createBoard()
 	QBrush blueBrush(Qt::blue);
 	QBrush blkBrush(Qt::black);
 	QBrush greenBrush(Qt::green);
+	QBrush whiteBrush(Qt::white);
 
 	Board b_(size,initMoves,seed);
 	b = new Board(b_);
 	int *tiles = b->getTiles();
 	
-	GUITile *tile;
+//	GUITile *tile;
 	
 	int length = 0;
 	int dim = static_cast<int>(sqrt(size));
@@ -177,20 +170,27 @@ void MainWindow::createBoard()
 	for(int i=0;i<size;i++){
 		QString Qnumber;
 		Qnumber.setNum(tiles[i]);
-		// Don't need to dynamically allocate it.??? yes, lets save these into temp list and delete 
+		// don't need to dynamically allocate it.??? yes, lets save these into temp list and delete 
 		tile = new GUITile(length*(i%dim),length*(i/dim),length,length,tiles[i], Qnumber); // creating tiles
 		tile->Qnumber.setPos( length*(i%dim)+(length/2), length*(i/dim)+(length/2) );
 		
-		if(tiles[i] == 0)
+		
+		if(tiles[i] == 0){
 			tile->setBrush(blkBrush);
-		else
+			tile->Qnumber.setBrush(blkBrush);
+		}
+		else{
 			tile->setBrush(blueBrush);
+			tile->Qnumber.setBrush(whiteBrush);
+		}
+		
 		scene->addItem(tile);
 		scene->addItem(&tile->Qnumber);
 
 		Qtiles.push_back(tile);
 	}
 	
+
 }
  
 void MainWindow::gameStart()
@@ -221,6 +221,24 @@ void MainWindow::gameStart()
 	/*cout << "size : " << size << endl;
 	cout << "initMoves : " << initMoves << endl;
 	cout << "seed : " << seed << endl;*/
+}
+
+bool MainWindow::eventFilter(QObject *watched, QEvent *e)
+{
+	cout << "yeah" << endl;
+	/*if (watched == GUITile && e->type() == ) {
+		int number = tile->getNumber();
+		cout << number << endl;
+		return true;
+	}
+	return QWidget::eventFilter(watched, e);
+	*/
+	
+}
+ 
+void MainWindow::mainWinodwMoveTile(int tileNum)
+{
+	cout << tileNum << endl;
 }
  
 void MainWindow::show() 

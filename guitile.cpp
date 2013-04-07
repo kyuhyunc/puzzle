@@ -34,6 +34,31 @@ int GUITile::getNumber()
 {
 	return number;
 }
+
+void GUITile::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+	QGraphicsItem::mousePressEvent(event); //Call the ancertor
+
+
+	
+	emit myPressSignal(); //Emits the signal
+}
+
+void GUITile::myPressSignal()
+{
+//	mainWinodwMoveTile(number);
+	std::cout << number << std::endl;
+}
+
+void GUITile::operator=(const GUITile &rhs)
+{
+	  x = rhs.x;
+    y = rhs.y;
+    width = rhs.width;
+    height = rhs.height;
+    number = rhs.number;
+    Qnumber = rhs.Qnumber;
+}
 /*
 QGraphicsSimpleTextItem GUITile::getQnumber()
 {

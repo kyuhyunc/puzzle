@@ -52,10 +52,14 @@ public:
 		QHBoxLayout *createTopLayout();
 		QHBoxLayout *createHeurLayout();
 		QListView *createSolution();
+		void mainWinodwMoveTile(int tileNum);
 //		QTextEdit *getErrMsg();
 //		QTextEdit *getErrMsg(QString msg);
 		
     void show();
+    
+protected:
+		bool eventFilter(QObject *watched, QEvent *e);
     
 private:
     QGraphicsScene *scene;
@@ -86,6 +90,7 @@ private:
 		int size, initMoves, seed;
 		Board *b;
 		 
+		GUITile *tile;
 		QList<GUITile*> Qtiles;
 		 
 public slots:
