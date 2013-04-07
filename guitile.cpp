@@ -37,7 +37,7 @@ int GUITile::getNumber()
 
 void GUITile::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-	QGraphicsItem::mousePressEvent(event); //Call the ancertor
+	//QGraphicsItem::mousePressEvent(event); //Call the ancertor
 
 
 	
@@ -57,7 +57,6 @@ void GUITile::operator=(const GUITile &rhs)
     width = rhs.width;
     height = rhs.height;
     number = rhs.number;
-    Qnumber = rhs.Qnumber;
 }
 /*
 QGraphicsSimpleTextItem GUITile::getQnumber()

@@ -59,8 +59,6 @@ MainWindow::MainWindow()  {
 	// connecting quit button to terminate the program
 	connect(quitGame, SIGNAL(clicked()), qApp, SLOT(quit()));
 	
-	//tile->installEventFilter(this);
-
 }
 
 QHBoxLayout *MainWindow::createTopLayout() 
@@ -188,6 +186,7 @@ void MainWindow::createBoard()
 		scene->addItem(&tile->Qnumber);
 
 		Qtiles.push_back(tile);
+		Qtiles[i]->installEventFilter(this);
 	}
 	
 
