@@ -39,15 +39,7 @@ void GUITile::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
 	//QGraphicsItem::mousePressEvent(event); //Call the ancertor
 
-
-	
-	emit myPressSignal(); //Emits the signal
-}
-
-void GUITile::myPressSignal()
-{
-//	mainWinodwMoveTile(number);
-	std::cout << number << std::endl;
+	emit myPressSignal(number); //Emits the signal
 }
 
 void GUITile::operator=(const GUITile &rhs)
@@ -58,8 +50,4 @@ void GUITile::operator=(const GUITile &rhs)
     height = rhs.height;
     number = rhs.number;
 }
-/*
-QGraphicsSimpleTextItem GUITile::getQnumber()
-{
-	return Qnumber;
-}*/
+

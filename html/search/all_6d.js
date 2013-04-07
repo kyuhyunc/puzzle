@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['mainwindow',['MainWindow',['../classMainWindow.html',1,'']]],
   ['manhattanheuristic',['ManhattanHeuristic',['../classManhattanHeuristic.html',1,'']]],
   ['max',['max',['../classMyList.html#a4f422fc82b3b0a94788d3792d4dba57c',1,'MyList']]],
   ['min',['min',['../classMyList.html#a8718b2b826ee315d3f730cf52193b11e',1,'MyList']]],

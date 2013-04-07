@@ -1,9 +1,16 @@
 #include "mainwindow.h"
 
+QBrush redBrush(Qt::red);
+QBrush blueBrush(Qt::blue);
+QBrush blkBrush(Qt::black);
+QBrush greenBrush(Qt::green);
+QBrush whiteBrush(Qt::white);
+
 MainWindow::MainWindow()  {
 	//We need a scene and a view to do graphics in QT
 	scene = new QGraphicsScene();
 	view = new QGraphicsView( scene );
+	b = NULL;
 
 //	view->setFixedSize(288,288);
 	view->setFixedSize(432,432);
@@ -47,7 +54,6 @@ MainWindow::MainWindow()  {
 	layout->addWidget(solList,3,1);
 	layout->addWidget(errMsg,4,0);
 	layout->addWidget(quitGame,4,1);
-
 
 	window = new QWidget;
 
@@ -99,9 +105,9 @@ QHBoxLayout *MainWindow::createTopLayout()
 	seedValue->setTabChangesFocus(true);
 
 	// label for the box
-	QLabel *boardSizeLabel = new QLabel(tr("Board Size"));
-  QLabel *startingMovesLabel = new QLabel(tr("Starting Moves"));
-  QLabel *seedValueLabel = new QLabel(tr("Seed Value"));
+	boardSizeLabel = new QLabel(tr("Board Size"));
+	startingMovesLabel = new QLabel(tr("Starting Moves"));
+  seedValueLabel = new QLabel(tr("Seed Value"));
 
 	topLayout->addWidget(boardSizeLabel);
 	topLayout->addWidget(boardSize);
@@ -117,8 +123,8 @@ QHBoxLayout *MainWindow::createHeurLayout()
 {
 	QHBoxLayout *heurLayout = new QHBoxLayout;
 	
-	QRadioButton *man_heur = new QRadioButton("Manhattan heuristic");
-	QRadioButton *out_heur = new QRadioButton("Out-of-place heuristic");
+	man_heur = new QRadioButton("Manhattan heuristic");
+	out_heur = new QRadioButton("Out-of-place heuristic");
 	
 	heurLayout->addWidget(man_heur);
 	heurLayout->addWidget(out_heur);
@@ -138,17 +144,11 @@ QListView *MainWindow::createSolution()
 
 void MainWindow::createBoard()
 {
-	QBrush redBrush(Qt::red);
-	QBrush blueBrush(Qt::blue);
-	QBrush blkBrush(Qt::black);
-	QBrush greenBrush(Qt::green);
-	QBrush whiteBrush(Qt::white);
-
 	Board b_(size,initMoves,seed);
 	b = new Board(b_);
 	int *tiles = b->getTiles();
 	
-//	GUITile *tile;
+	GUITile *tile;
 	
 	int length = 0;
 	int dim = static_cast<int>(sqrt(size));
@@ -186,14 +186,27 @@ void MainWindow::createBoard()
 		scene->addItem(&tile->Qnumber);
 
 		Qtiles.push_back(tile);
-		Qtiles[i]->installEventFilter(this);
+		//Qtiles[i]->installEventFilter(this);
+		connect(Qtiles[i],SIGNAL(myPressSignal(int)),this,SLOT(MoveTile(int)));
 	}
 	
 
 }
  
 void MainWindow::gameStart()
-{
+{ 
+
+	// if the game is not the first time, deallocation for previous board is necessary
+	if(b != NULL){
+		delete b;
+		b = NULL;
+	}
+	
+  for(QList<GUITile*>::iterator it=Qtiles.begin();it!=Qtiles.end();++it){
+    		delete *it;
+  }
+  Qtiles.clear();
+
 	QString size_= boardSize->toPlainText();
 	QString initMoves_= startingMoves->toPlainText();
 	QString seed_= seedValue->toPlainText();
@@ -212,6 +225,9 @@ void MainWindow::gameStart()
 	else if(size != 9 && size != 16){
 		errMsg->setPlainText("Improper Size. Size must be either 9 or 16"); 
 	}
+	else if(initMoves < 1 || seed <1){
+		errMsg->setPlainText("Too small Starting moves or Seed value!");
+	}
 	else{
 		errMsg->setPlainText("Game starts"); 
 		createBoard();
@@ -222,22 +238,74 @@ void MainWindow::gameStart()
 	cout << "seed : " << seed << endl;*/
 }
 
-bool MainWindow::eventFilter(QObject *watched, QEvent *e)
+void MainWindow::MoveTile(int tileNum)
 {
-	cout << "yeah" << endl;
-	/*if (watched == GUITile && e->type() == ) {
-		int number = tile->getNumber();
-		cout << number << endl;
-		return true;
+	// reset the Qlist to save updated board
+  for(QList<GUITile*>::iterator it=Qtiles.begin();it!=Qtiles.end();++it){
+    	delete *it;
+  }
+  
+  Qtiles.clear();
+
+	try{
+		b->move(tileNum);
 	}
-	return QWidget::eventFilter(watched, e);
-	*/
+	catch(int i){
+		if(i == 0)
+			errMsg->setPlainText("Improper click of tile"); 
+		if(i == 1)
+			errMsg->setPlainText("Tile has moved"); 
+	}
 	
-}
- 
-void MainWindow::mainWinodwMoveTile(int tileNum)
-{
-	cout << tileNum << endl;
+	int size = b->getSize();
+	
+	int *tiles = b->getTiles();
+	
+	GUITile *tile;
+	
+	int length = 0;
+	int dim = static_cast<int>(sqrt(size));
+	
+	// board size 288 * 288
+	if(size == 9){
+		// if size is 9, size of each tile is 96
+		length = (96*3)/2;
+	}
+	else if(size == 16){
+		// if size is 16, then size of each tile is 72
+		length = (72*3)/2;
+	}
+
+	// display board
+	for(int i=0;i<size;i++){
+		QString Qnumber;
+		Qnumber.setNum(tiles[i]);
+		// don't need to dynamically allocate it.??? yes, lets save these into temp list and delete 
+		tile = new GUITile(length*(i%dim),length*(i/dim),length,length,tiles[i], Qnumber); // creating tiles
+		tile->Qnumber.setPos( length*(i%dim)+(length/2), length*(i/dim)+(length/2) );
+		
+		
+		if(tiles[i] == 0){
+			tile->setBrush(blkBrush);
+			tile->Qnumber.setBrush(blkBrush);
+		}
+		else{
+			tile->setBrush(blueBrush);
+			tile->Qnumber.setBrush(whiteBrush);
+		}
+		
+		scene->addItem(tile);
+		scene->addItem(&tile->Qnumber);
+
+		Qtiles.push_back(tile);
+		//Qtiles[i]->installEventFilter(this);
+		if(b->solved() != true)
+			connect(Qtiles[i],SIGNAL(myPressSignal(int)),this,SLOT(MoveTile(int)));
+		else{
+			errMsg->setPlainText("Puzzle is solved!");
+//			delete b;
+		}
+	}
 }
  
 void MainWindow::show() 
@@ -247,6 +315,37 @@ void MainWindow::show()
 
 MainWindow::~MainWindow()
 {
- 
+	delete startGame;
+	delete quitGame;	
+	delete aAlg;
+	delete man_heur;
+	delete out_heur;
+
+	delete boardSizeLabel;
+  delete startingMovesLabel;
+	delete seedValueLabel;
+
+	if(b != NULL)
+		delete b;
+	 
+	for(QList<GUITile*>::iterator it=Qtiles.begin();it!=Qtiles.end();++it){
+    	delete *it;
+  }  
+  Qtiles.clear();
+	
+	delete boardSize;
+	delete startingMoves;
+	delete seedValue;
+
+	delete errMsg;
+	
+	delete scene;
+	delete view;
+	delete topLayout; // top input text board layout
+	delete heurLayout; // heuristic radio buttons layout
+	delete solList; // list for displaying solutions
+	delete layout; // main layout    
+
+	delete window;
 }
 

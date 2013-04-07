@@ -52,14 +52,8 @@ public:
 		QHBoxLayout *createTopLayout();
 		QHBoxLayout *createHeurLayout();
 		QListView *createSolution();
-		void mainWinodwMoveTile(int tileNum);
-//		QTextEdit *getErrMsg();
-//		QTextEdit *getErrMsg(QString msg);
 		
     void show();
-    
-protected:
-		bool eventFilter(QObject *watched, QEvent *e);
     
 private:
     QGraphicsScene *scene;
@@ -87,14 +81,23 @@ private:
 		QTextEdit *startingMoves;
 		QTextEdit *seedValue;
 		
+		// labels for topLayout
+		QLabel *boardSizeLabel;
+	  QLabel *startingMovesLabel;
+  	QLabel *seedValueLabel;
+  	
+  	// radio buttons for heurLayout
+ 		QRadioButton *man_heur;
+		QRadioButton *out_heur;
+		
 		int size, initMoves, seed;
 		Board *b;
 		 
-		GUITile *tile;
 		QList<GUITile*> Qtiles;
 		 
 public slots:
     void gameStart();
+ 		void MoveTile(int tileNum);
 
 
 };

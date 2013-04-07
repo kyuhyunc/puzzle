@@ -108,6 +108,7 @@ void Board::move(int tile){
 	int blankloc = -1;
 	int tileloc = -1;
 	int dim = static_cast<int>(sqrt(size_));
+	int flag = 0;
 	
 	for(int i=0;i<size_;i++){
 		if(tiles_[i] == 0){
@@ -121,12 +122,42 @@ void Board::move(int tile){
 		}
 	}
 
-	if(blankloc+1==tileloc || blankloc-1==tileloc || blankloc-dim==tileloc || blankloc+dim==tileloc){
+	// If north tile exists
+	if(blankloc - dim >= 0){
+		if(tile == tiles_[blankloc-dim]){
+			flag = 1;
+		}
+	}
+	// If west tile exists
+	if(blankloc % dim != 0){
+		if(tile == tiles_[blankloc-1]){
+			flag = 1;
+		}
+	}
+	// If south tile exists
+	if(blankloc + dim <= size_){
+		if(tile == tiles_[blankloc+dim]){
+			flag = 1;
+		}
+	}
+	// If east tile exists
+	if(blankloc % dim != dim-1){
+		if(tile == tiles_[blankloc+1]){
+			flag = 1;
+		}
+	}
+	
+	//if(blankloc+1==tileloc || blankloc-1==tileloc || blankloc-dim==tileloc || blankloc+dim==tileloc){
+	if(flag == 1){
 		tiles_[blankloc] = tiles_[tileloc];
 		tiles_[tileloc] = 0;
+		flag = 0;
+		throw 1;
 	}
-	else
-		cout << "Improper tile value" << endl;
+	else{
+		throw 0;
+		//cout << "Improper tile value" << endl;
+	}
 }
 
 std::map<int, Board*> Board::potentialMoves()
