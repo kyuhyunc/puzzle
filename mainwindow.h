@@ -33,7 +33,6 @@
 #include "puzzle_solver.h"
 #include "pmminlist.h"
 
-
 #include "guitile.h"
 
 #define WINDOW_MAX_X 250
@@ -98,6 +97,7 @@ private:
 public slots:
     void gameStart();
  		void MoveTile(int tileNum);
+ 		void Qcheat();
 
 
 };

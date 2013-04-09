@@ -57,6 +57,7 @@ MainWindow::MainWindow()  {
 
 	window = new QWidget;
 
+	// setting layout in the main window
 	window->setLayout(layout);
 	
 	// connecting start button to game start function
@@ -64,6 +65,8 @@ MainWindow::MainWindow()  {
 	
 	// connecting quit button to terminate the program
 	connect(quitGame, SIGNAL(clicked()), qApp, SLOT(quit()));
+	
+	connect(aAlg, SIGNAL(clicked()), this, SLOT(Qcheat()));
 	
 }
 
@@ -168,11 +171,14 @@ void MainWindow::createBoard()
 	for(int i=0;i<size;i++){
 		QString Qnumber;
 		Qnumber.setNum(tiles[i]);
+//		QFont temp;
+		
 		// don't need to dynamically allocate it.??? yes, lets save these into temp list and delete 
 		tile = new GUITile(length*(i%dim),length*(i/dim),length,length,tiles[i], Qnumber); // creating tiles
+		// setting postion for the number inside of each tile
 		tile->Qnumber.setPos( length*(i%dim)+(length/2), length*(i/dim)+(length/2) );
-		
-		
+//		tile->Qnumber.setFont();
+				
 		if(tiles[i] == 0){
 			tile->setBrush(blkBrush);
 			tile->Qnumber.setBrush(blkBrush);
@@ -183,6 +189,7 @@ void MainWindow::createBoard()
 		}
 		
 		scene->addItem(tile);
+		// adding number inside of the tiles
 		scene->addItem(&tile->Qnumber);
 
 		Qtiles.push_back(tile);
@@ -306,6 +313,39 @@ void MainWindow::MoveTile(int tileNum)
 //			delete b;
 		}
 	}
+}
+ 
+void MainWindow::Qcheat()
+{
+//	cout << Qtiles.size() << endl;
+	
+	if(Qtiles.size() == 0){
+		errMsg->setPlainText("Game has not started");
+	}
+	else if(man_heur->isChecked() || out_heur->isChecked()){
+		PuzzleSolver cheat(*b);
+		ManhattanHeuristic Man_Heur;
+		OutOfPlaceHeuristic Out_Heur;
+	
+		if(man_heur->isChecked()){
+			errMsg->setPlainText("Manhattan heuristic is executed");
+			cheat.run(&Man_Heur);
+		}
+		else if(out_heur->isChecked()){
+			errMsg->setPlainText("Out-of-place heuristic is executed");
+			cheat.run(&Out_Heur);
+		}		
+		deque<int> solution = cheat.get_solution();
+		int sol_size = solution.size();
+		for(int i=0;i<sol_size;i++){
+				cout << " " << solution.back();
+				solution.pop_back();
+			}
+		cout << endl << "(Expansion = " << cheat.getNumExpansions() << ")" << endl << endl;			
+	}
+	else{
+		errMsg->setPlainText("You should check either Manhattan heuristic or Out-of-place heuristic");
+	}		
 }
  
 void MainWindow::show() 

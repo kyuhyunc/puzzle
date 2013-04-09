@@ -68,9 +68,9 @@ int PuzzleSolver::run(PuzzleHeuristic *ph)
 			//	cout << "1" << endl;
 			}
 
-			cout << "openList size: " << openList.size() << endl;
-			cout << "closeList size: " << closeList.size() << endl;
-			cout << "garbage size: " << garbage.size() << endl;
+			//cout << "openList size: " << openList.size() << endl;
+			//cout << "closeList size: " << closeList.size() << endl;
+			//cout << "garbage size: " << garbage.size() << endl;
 
 			//cout << "num_moves: " << num_moves << endl;
 			
@@ -95,7 +95,7 @@ int PuzzleSolver::run(PuzzleHeuristic *ph)
 		//BoardMap.clear();
 		
 		num_moves ++;
-		cout << "3" << endl;
+		//cout << "3" << endl;
 	}
 	
 	return -1;
