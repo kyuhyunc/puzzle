@@ -166,9 +166,7 @@ void MainWindow::gameStart()
   for(QList<GUITile*>::iterator it=Qtiles.begin();it!=Qtiles.end();++it){
     		delete *it;
   }
-  Qtiles.clear();
-  
-  
+  Qtiles.clear();  
 
 	QString size_= boardSize->toPlainText();
 	QString initMoves_= startingMoves->toPlainText();
@@ -268,6 +266,7 @@ void MainWindow::createBoard()
 
 void MainWindow::MoveTile(int tileNum)
 {
+	
 	// reset the Qlist to save updated board
   for(QList<GUITile*>::iterator it=Qtiles.begin();it!=Qtiles.end();++it){
     	delete *it;
@@ -353,13 +352,19 @@ void MainWindow::AnimateTile(int tileNum)
 			//cout << "direction: " << direction << endl;
 		}
 		else if(i != 4){
-			if(i == 0) direction = 0;
-			else if(i == 1) direction = 1;
-			else if(i == 2) direction = 2;
-			else if(i == 3) direction = 3;
+
+			// disconnect tiles for a while for prevent double click error
+			for(int j=0;j<Qtiles.size();j++){
+				Qtiles[j]->disconnect(Qtiles[j],0,0,0);	
+			}
+
+			if(i == 0)	direction = 0;
+			else if(i == 1)	direction = 1;
+			else if(i == 2)	direction = 2;
+			else if(i == 3)	direction = 3;
 			errMsg->setPlainText("Tile has moved"); 
 			//cout << "direction: " << direction << endl;
-	
+
 			timer->setInterval(speed);
 	    connect(timer,SIGNAL(timeout()),this,SLOT(SlidingTile()));
  	    timer->start();
@@ -386,7 +391,12 @@ void MainWindow::SlidingTile()
 	// when timer stops, re-draw the tile
 	if(timerCnt >= (Qtiles[loc]->getLength())*speed){
 		timer->stop();
-		
+
+		// reconnect tile with signal when moving(sliding) is done
+		for(int i=0;i<Qtiles.size();i++){
+			connect(Qtiles[i],SIGNAL(myPressSignal(int)),this,SLOT(AnimateTile(int)));
+		}		
+	
 		// reset the timer
 		delete timer;
 		timer = new QTimer(this);
@@ -397,6 +407,7 @@ void MainWindow::SlidingTile()
 		
 		if(b->solved() == true){
 			errMsg->setPlainText("Puzzle is solved!");
+			// disconnect all tiles when the puzzle is solved
 			for(int i=0;i<Qtiles.size();i++){
 				Qtiles[i]->disconnect(Qtiles[i],0,0,0);
 			}
