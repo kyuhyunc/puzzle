@@ -157,44 +157,46 @@ void MainWindow::createBoard()
 	int length = 0;
 	int dim = static_cast<int>(sqrt(size));
 	
-	// board size 288 * 288
-	if(size == 9){
-		// if size is 9, size of each tile is 96
-		length = (96*3)/2;
+	if(b->solved() == true){
+		errMsg->setPlainText("Puzzle is already solved. Put bigger Seed and Starting moves value");
 	}
-	else if(size == 16){
-		// if size is 16, then size of each tile is 72
-		length = (72*3)/2;
-	}
-
+	else{
+		// board size 288 * 288
+		if(size == 9){
+			// if size is 9, size of each tile is 96
+			length = (96*3)/2;
+		}
+		else if(size == 16){
+			// if size is 16, then size of each tile is 72
+			length = (72*3)/2;
+		}
 	
-	// display initial board
-	for(int i=0;i<size;i++){
-		QString Qnumber;
-		Qnumber.setNum(tiles[i]);
+		// display initial board
+		for(int i=0;i<size;i++){
+			QString Qnumber;
+			Qnumber.setNum(tiles[i]);
 		
-		// don't need to dynamically allocate it.??? yes, lets save these into temp list and delete 
-		tile = new GUITile(length*(i%dim),length*(i/dim),length,length,tiles[i], Qnumber); // creating tiles
+			// don't need to dynamically allocate it.??? yes, lets save these into temp list and delete 
+			tile = new GUITile(length*(i%dim),length*(i/dim),length,length,tiles[i], Qnumber); // creating tiles
 				
-		if(tiles[i] == 0){
-			tile->setBrush(blkBrush);
-			tile->Qnumber.setBrush(blkBrush);
-		}
-		else{
-			tile->setBrush(blueBrush);
-			tile->Qnumber.setBrush(whiteBrush);
-		}
+			if(tiles[i] == 0){
+				tile->setBrush(blkBrush);
+				tile->Qnumber.setBrush(blkBrush);
+			}
+			else{
+				tile->setBrush(blueBrush);
+				tile->Qnumber.setBrush(whiteBrush);
+			}
 		
-		scene->addItem(tile);
-		// adding number inside of the tiles
-		scene->addItem(&tile->Qnumber);
+			scene->addItem(tile);
+			// adding number inside of the tiles
+			scene->addItem(&tile->Qnumber);
 
-		Qtiles.push_back(tile);
-		//Qtiles[i]->installEventFilter(this);
-		connect(Qtiles[i],SIGNAL(myPressSignal(int)),this,SLOT(MoveTile(int)));
+			Qtiles.push_back(tile);
+			//Qtiles[i]->installEventFilter(this);
+			connect(Qtiles[i],SIGNAL(myPressSignal(int)),this,SLOT(MoveTile(int)));
+		}
 	}
-	
-
 }
  
 void MainWindow::gameStart()
@@ -240,7 +242,7 @@ void MainWindow::gameStart()
 	}
 	else{
 		errMsg->setPlainText("Game starts"); 
-		createBoard();
+		createBoard();			
 	}
 	
 	/*cout << "size : " << size << endl;
@@ -262,15 +264,15 @@ void MainWindow::MoveTile(int tileNum)
 	}
 	catch(int i){
 		if(i == 0)
-			errMsg->setPlainText("Improper click of tile"); 
+			errMsg->setPlainText("Improper tile click"); 
 		if(i == 1)
 			errMsg->setPlainText("Tile has moved"); 
 	}
 	
 	int size = b->getSize();
-	
 	int *tiles = b->getTiles();
 	
+	// temporary tile for saving each tile
 	GUITile *tile;
 	
 	int length = 0;

@@ -1,7 +1,7 @@
 #include "guitile.h"
 
-#define x_letter_scale 0.34
-#define y_letter_scale 0.2
+#define x_letter_scale 0.32
+#define y_letter_scale 0.18
 
 QFont tempFont("Times", 60, QFont::Bold);
 
