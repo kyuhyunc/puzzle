@@ -1,11 +1,14 @@
 #include "mainwindow.h"
+#define x_letter_scale 0.34
+#define y_letter_scale 0.2
 
 QBrush redBrush(Qt::red);
 QBrush blueBrush(Qt::blue);
 QBrush blkBrush(Qt::black);
 QBrush greenBrush(Qt::green);
 QBrush whiteBrush(Qt::white);
-
+QFont tempFont("Times", 60, QFont::Bold);
+		
 MainWindow::MainWindow()  {
 	//We need a scene and a view to do graphics in QT
 	scene = new QGraphicsScene();
@@ -144,7 +147,6 @@ QListView *MainWindow::createSolution()
 	return solList;
 }
 
-
 void MainWindow::createBoard()
 {
 	Board b_(size,initMoves,seed);
@@ -171,13 +173,12 @@ void MainWindow::createBoard()
 	for(int i=0;i<size;i++){
 		QString Qnumber;
 		Qnumber.setNum(tiles[i]);
-//		QFont temp;
 		
 		// don't need to dynamically allocate it.??? yes, lets save these into temp list and delete 
 		tile = new GUITile(length*(i%dim),length*(i/dim),length,length,tiles[i], Qnumber); // creating tiles
 		// setting postion for the number inside of each tile
-		tile->Qnumber.setPos( length*(i%dim)+(length/2), length*(i/dim)+(length/2) );
-//		tile->Qnumber.setFont();
+		tile->Qnumber.setPos( length*(i%dim)+(length*x_letter_scale), length*(i/dim)+(length*y_letter_scale) );
+		tile->Qnumber.setFont(tempFont);
 				
 		if(tiles[i] == 0){
 			tile->setBrush(blkBrush);
@@ -289,7 +290,8 @@ void MainWindow::MoveTile(int tileNum)
 		Qnumber.setNum(tiles[i]);
 		// don't need to dynamically allocate it.??? yes, lets save these into temp list and delete 
 		tile = new GUITile(length*(i%dim),length*(i/dim),length,length,tiles[i], Qnumber); // creating tiles
-		tile->Qnumber.setPos( length*(i%dim)+(length/2), length*(i/dim)+(length/2) );
+		tile->Qnumber.setPos( length*(i%dim)+(length*x_letter_scale), length*(i/dim)+(length*y_letter_scale) );
+		tile->Qnumber.setFont(tempFont);
 		
 		
 		if(tiles[i] == 0){
@@ -318,14 +320,17 @@ void MainWindow::MoveTile(int tileNum)
 void MainWindow::Qcheat()
 {
 //	cout << Qtiles.size() << endl;
-	
-	if(Qtiles.size() == 0){
+	ManhattanHeuristic Man_Heur;
+	OutOfPlaceHeuristic Out_Heur;
+
+	if(b == NULL){
 		errMsg->setPlainText("Game has not started");
+	}
+	else if(b->solved() == true){
+		errMsg->setPlainText("Puzzle is solved already");
 	}
 	else if(man_heur->isChecked() || out_heur->isChecked()){
 		PuzzleSolver cheat(*b);
-		ManhattanHeuristic Man_Heur;
-		OutOfPlaceHeuristic Out_Heur;
 	
 		if(man_heur->isChecked()){
 			errMsg->setPlainText("Manhattan heuristic is executed");
@@ -335,13 +340,34 @@ void MainWindow::Qcheat()
 			errMsg->setPlainText("Out-of-place heuristic is executed");
 			cheat.run(&Out_Heur);
 		}		
+		
+		// actual solution printing out codes 
 		deque<int> solution = cheat.get_solution();
 		int sol_size = solution.size();
+
+//		QStandardItemModel *model = new QStandardItemModel(1,sol_size,this);
+		QStandardItemModel *model = new QStandardItemModel(sol_size,0,this);
+
+		// add items to model and will add this model to the QListView
+
+		cout << endl << "Try this sequence:";
+		
 		for(int i=0;i<sol_size;i++){
-				cout << " " << solution.back();
-				solution.pop_back();
-			}
-		cout << endl << "(Expansion = " << cheat.getNumExpansions() << ")" << endl << endl;			
+			QString temp;
+			cout << " " << solution.back();
+			// converting solution integer to QString
+			temp.setNum(solution.back());
+			
+			// put Qstring(temp) to StandardItem
+			QStandardItem* itm = new QStandardItem(temp);
+			// put item to model
+			model->setItem(i,0,itm);
+			solution.pop_back();
+		}
+		cout << endl << "(Expansion = " << cheat.getNumExpansions() << ")" << endl << endl;
+
+		// add model to QListView
+		solList->setModel(model);
 	}
 	else{
 		errMsg->setPlainText("You should check either Manhattan heuristic or Out-of-place heuristic");

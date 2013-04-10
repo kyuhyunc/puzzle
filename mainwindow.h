@@ -18,6 +18,7 @@
 #include <QListView>
 #include <QString>
 #include <QGraphicsItem>
+#include <QStandardItemModel>
 
 #include <stdlib.h>
 #include <iostream>
