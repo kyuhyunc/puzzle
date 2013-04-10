@@ -266,7 +266,6 @@ void MainWindow::createBoard()
 
 void MainWindow::MoveTile(int tileNum)
 {
-	
 	// reset the Qlist to save updated board
   for(QList<GUITile*>::iterator it=Qtiles.begin();it!=Qtiles.end();++it){
     	delete *it;
@@ -311,8 +310,10 @@ void MainWindow::MoveTile(int tileNum)
 		tile = new GUITile(length*(i%dim),length*(i/dim),length,length,tiles[i], Qnumber); // creating tiles
 		
 		if(tiles[i] == 0){
-			tile->setBrush(blkBrush);
-			tile->Qnumber.setBrush(blkBrush);
+			//tile->setBrush(blkBrush);
+			tile->setBrush(whiteBrush);
+			//tile->Qnumber.setBrush(blkBrush);
+			tile->Qnumber.setBrush(whiteBrush);
 		}
 		else{
 			tile->setBrush(blueBrush);
