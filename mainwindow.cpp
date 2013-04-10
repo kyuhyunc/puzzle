@@ -7,8 +7,7 @@ QBrush blueBrush(Qt::blue);
 QBrush blkBrush(Qt::black);
 QBrush greenBrush(Qt::green);
 QBrush whiteBrush(Qt::white);
-QFont tempFont("Times", 60, QFont::Bold);
-		
+	
 MainWindow::MainWindow()  {
 	//We need a scene and a view to do graphics in QT
 	scene = new QGraphicsScene();
@@ -176,9 +175,6 @@ void MainWindow::createBoard()
 		
 		// don't need to dynamically allocate it.??? yes, lets save these into temp list and delete 
 		tile = new GUITile(length*(i%dim),length*(i/dim),length,length,tiles[i], Qnumber); // creating tiles
-		// setting postion for the number inside of each tile
-		tile->Qnumber.setPos( length*(i%dim)+(length*x_letter_scale), length*(i/dim)+(length*y_letter_scale) );
-		tile->Qnumber.setFont(tempFont);
 				
 		if(tiles[i] == 0){
 			tile->setBrush(blkBrush);
@@ -227,8 +223,14 @@ void MainWindow::gameStart()
 	initMoves = initMoves_.toInt(&ok_2,10);
 	seed = seed_.toInt(&ok_3,10);
 	
-	if(ok_1 == false || ok_2 == false || ok_3 == false){
-		errMsg->setPlainText("Improper Size or Starting moves or Seed value!"); 
+	if(ok_1 == false){
+		errMsg->setPlainText("Improper Size");
+	}
+	else if(ok_2 == false){
+		errMsg->setPlainText("Improper Starting moves");
+	}
+	else if(ok_3 == false){
+		errMsg->setPlainText("Improper Seed value!"); 
 	}
 	else if(size != 9 && size != 16){
 		errMsg->setPlainText("Improper Size. Size must be either 9 or 16"); 
@@ -290,9 +292,6 @@ void MainWindow::MoveTile(int tileNum)
 		Qnumber.setNum(tiles[i]);
 		// don't need to dynamically allocate it.??? yes, lets save these into temp list and delete 
 		tile = new GUITile(length*(i%dim),length*(i/dim),length,length,tiles[i], Qnumber); // creating tiles
-		tile->Qnumber.setPos( length*(i%dim)+(length*x_letter_scale), length*(i/dim)+(length*y_letter_scale) );
-		tile->Qnumber.setFont(tempFont);
-		
 		
 		if(tiles[i] == 0){
 			tile->setBrush(blkBrush);
@@ -307,12 +306,11 @@ void MainWindow::MoveTile(int tileNum)
 		scene->addItem(&tile->Qnumber);
 
 		Qtiles.push_back(tile);
-		//Qtiles[i]->installEventFilter(this);
+		
 		if(b->solved() != true)
 			connect(Qtiles[i],SIGNAL(myPressSignal(int)),this,SLOT(MoveTile(int)));
 		else{
 			errMsg->setPlainText("Puzzle is solved!");
-//			delete b;
 		}
 	}
 }

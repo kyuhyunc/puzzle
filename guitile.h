@@ -5,8 +5,9 @@
 #include <QString>
 #include <QObject>
 #include <QGraphicsItem>
-#include <iostream>
+#include <QFont>
 
+#include <iostream>
 
 class GUITile : public QObject, public QGraphicsRectItem{
 		Q_OBJECT
@@ -36,8 +37,6 @@ private:
     int width;
     int height;
     int number;
-
-
 };
 
 #endif // GUITILE_H

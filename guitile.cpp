@@ -1,5 +1,10 @@
 #include "guitile.h"
 
+#define x_letter_scale 0.34
+#define y_letter_scale 0.2
+
+QFont tempFont("Times", 60, QFont::Bold);
+
 GUITile::GUITile(int nx, int ny, int w, int h, int n, QString Qn) :
 	QGraphicsRectItem(nx, ny, w, h) {
 	x = nx;
@@ -8,6 +13,10 @@ GUITile::GUITile(int nx, int ny, int w, int h, int n, QString Qn) :
 	height = h;
 	number = n;
 	Qnumber.setText(Qn);
+	
+	// setting postion for the number inside of each tile
+	Qnumber.setPos( nx+(w*x_letter_scale), ny+(h*y_letter_scale) );
+	Qnumber.setFont(tempFont);
 }
 
 void GUITile::setX( int nx )
