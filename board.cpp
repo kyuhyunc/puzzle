@@ -102,13 +102,13 @@ Board::~Board()
 }
 
 /** @param tile Value of one tile for moving to blank location	
- *	 @return Nothing
+ *	@return Nothing
  */
 void Board::move(int tile){
 	int blankloc = -1;
 	int tileloc = -1;
 	int dim = static_cast<int>(sqrt(size_));
-	int flag = 0;
+	int flag = 4;
 	
 	for(int i=0;i<size_;i++){
 		if(tiles_[i] == 0){
@@ -125,7 +125,7 @@ void Board::move(int tile){
 	// If north tile exists
 	if(blankloc - dim >= 0){
 		if(tile == tiles_[blankloc-dim]){
-			flag = 1;
+			flag = 0;
 		}
 	}
 	// If west tile exists
@@ -137,25 +137,29 @@ void Board::move(int tile){
 	// If south tile exists
 	if(blankloc + dim <= size_){
 		if(tile == tiles_[blankloc+dim]){
-			flag = 1;
+			flag = 2;
 		}
 	}
 	// If east tile exists
 	if(blankloc % dim != dim-1){
 		if(tile == tiles_[blankloc+1]){
-			flag = 1;
+			flag = 3;
 		}
 	}
 	
 	//if(blankloc+1==tileloc || blankloc-1==tileloc || blankloc-dim==tileloc || blankloc+dim==tileloc){
-	if(flag == 1){
+	if(flag != 4){
 		tiles_[blankloc] = tiles_[tileloc];
 		tiles_[tileloc] = 0;
-		flag = 0;
-		throw 1;
+		// thorow number depeinding on the direction of the tile
+		// 0:N, 1:W, 2:S, 3:E
+		if(flag == 0)	throw 0;
+		else if(flag == 1) throw 1;
+		else if(flag == 2) throw 2;
+		else if(flag == 3) throw 3;
 	}
 	else{
-		throw 0;
+		throw 4;
 		//cout << "Improper tile value" << endl;
 	}
 }

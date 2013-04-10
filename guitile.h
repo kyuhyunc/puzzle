@@ -18,11 +18,13 @@ public:
     void setY( int ny );
     int getX();
     int getY();
+    int getLength();
     int getNumber();
-//  void move(int windowMaxX, int windowMaxY );
+	  void move(int direction);
     
     QGraphicsSimpleTextItem Qnumber;
-    
+   	int cnt; // for sliding
+   	    
     void operator=(const GUITile &rhs);
 
 signals:

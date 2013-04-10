@@ -1,6 +1,7 @@
 #include "mainwindow.h"
-#define x_letter_scale 0.34
-#define y_letter_scale 0.2
+#define x_letter_scale 0.32
+#define y_letter_scale 0.18
+#define speed 1
 
 QBrush redBrush(Qt::red);
 QBrush blueBrush(Qt::blue);
@@ -9,6 +10,8 @@ QBrush greenBrush(Qt::green);
 QBrush whiteBrush(Qt::white);
 	
 MainWindow::MainWindow()  {
+	//Biggest layout that will include every other layout and widget	
+	layout = new QGridLayout;
 	//We need a scene and a view to do graphics in QT
 	scene = new QGraphicsScene();
 	view = new QGraphicsView( scene );
@@ -19,9 +22,7 @@ MainWindow::MainWindow()  {
 	
 	//This sets the size of the window and gives it a title.
 	view->setFixedSize( WINDOW_MAX_X*2, WINDOW_MAX_Y*2 );
-	view->setWindowTitle("Graphical 8-Tile Puzzle");
-
-	layout = new QGridLayout;
+	view->setWindowTitle("3*3 or 4*4 Puzzle Game");
 
 	// topLayout for text input board	
 	topLayout = createTopLayout();
@@ -50,24 +51,30 @@ MainWindow::MainWindow()  {
 	// placing layouts and widgets in the main layout by using gridlayout
 	layout->addLayout(topLayout,0,0);
 	layout->addLayout(heurLayout,1,0);
-	layout->addWidget(startGame,2,0);
+	layout->addWidget(startGame,2,0); // buttons
 	layout->addWidget(aAlg,2,1);
-	layout->addWidget(view,3,0);
 	layout->addWidget(solList,3,1);
 	layout->addWidget(errMsg,4,0);
 	layout->addWidget(quitGame,4,1);
+	layout->addWidget(view,3,0);
 
+	// window that will get layout that has every thing
 	window = new QWidget;
 
 	// setting layout in the main window
-	window->setLayout(layout);
+	// window > layout(Gridlayout) = other layouts + widgets
+	window->setLayout(layout);	
 	
+	// setting a timer
+  timer = new QTimer(this);
+
 	// connecting start button to game start function
   connect(startGame, SIGNAL(clicked()), this, SLOT(gameStart()));
 	
 	// connecting quit button to terminate the program
 	connect(quitGame, SIGNAL(clicked()), qApp, SLOT(quit()));
 	
+	// connecting A* algorithm button to Qcheat function
 	connect(aAlg, SIGNAL(clicked()), this, SLOT(Qcheat()));
 	
 }
@@ -146,6 +153,60 @@ QListView *MainWindow::createSolution()
 	return solList;
 }
 
+void MainWindow::gameStart()
+{ 
+
+	// if the game is not the first time, deallocation for previous board is necessary
+	if(b != NULL){
+		delete b;
+		model->clear();
+		b = NULL;
+	}
+	
+  for(QList<GUITile*>::iterator it=Qtiles.begin();it!=Qtiles.end();++it){
+    		delete *it;
+  }
+  Qtiles.clear();
+  
+  
+
+	QString size_= boardSize->toPlainText();
+	QString initMoves_= startingMoves->toPlainText();
+	QString seed_= seedValue->toPlainText();
+	
+	bool ok_1 = true; //*ok is set to false; otherwise *ok is set to true.
+	bool ok_2 = true; //*ok is set to false; otherwise *ok is set to true.
+	bool ok_3 = true; //*ok is set to false; otherwise *ok is set to true.
+		
+	size = size_.toInt(&ok_1,10);
+	initMoves = initMoves_.toInt(&ok_2,10);
+	seed = seed_.toInt(&ok_3,10);
+	
+	if(ok_1 == false){
+		errMsg->setPlainText("Improper Size");
+	}
+	else if(size != 9 && size != 16){
+		errMsg->setPlainText("Improper Size. Size must be either 9 or 16"); 
+	}
+	else if(ok_2 == false){
+		errMsg->setPlainText("Improper Starting moves");
+	}
+	else if(ok_3 == false){
+		errMsg->setPlainText("Improper Seed value!"); 
+	}	
+	else if(initMoves < 1 || seed <1){
+		errMsg->setPlainText("Too small Starting moves or Seed value!");
+	}
+	else{
+		errMsg->setPlainText("Game starts"); 
+		createBoard();			
+	}
+	
+	/*cout << "size : " << size << endl;
+	cout << "initMoves : " << initMoves << endl;
+	cout << "seed : " << seed << endl;*/
+}
+
 void MainWindow::createBoard()
 {
 	Board b_(size,initMoves,seed);
@@ -180,8 +241,10 @@ void MainWindow::createBoard()
 			tile = new GUITile(length*(i%dim),length*(i/dim),length,length,tiles[i], Qnumber); // creating tiles
 				
 			if(tiles[i] == 0){
-				tile->setBrush(blkBrush);
-				tile->Qnumber.setBrush(blkBrush);
+				//tile->setBrush(blkBrush);
+				tile->setBrush(whiteBrush);
+				//tile->Qnumber.setBrush(blkBrush);
+				tile->Qnumber.setBrush(whiteBrush);
 			}
 			else{
 				tile->setBrush(blueBrush);
@@ -192,62 +255,15 @@ void MainWindow::createBoard()
 			// adding number inside of the tiles
 			scene->addItem(&tile->Qnumber);
 
+			// pushing back tile to QList for deallocation
 			Qtiles.push_back(tile);
-			//Qtiles[i]->installEventFilter(this);
-			connect(Qtiles[i],SIGNAL(myPressSignal(int)),this,SLOT(MoveTile(int)));
+
+			// move a tile instictly
+			//connect(Qtiles[i],SIGNAL(myPressSignal(int)),this,SLOT(MoveTile(int)));
+			// move a tile my animation
+			connect(Qtiles[i],SIGNAL(myPressSignal(int)),this,SLOT(AnimateTile(int)));
 		}
 	}
-}
- 
-void MainWindow::gameStart()
-{ 
-
-	// if the game is not the first time, deallocation for previous board is necessary
-	if(b != NULL){
-		delete b;
-		b = NULL;
-	}
-	
-  for(QList<GUITile*>::iterator it=Qtiles.begin();it!=Qtiles.end();++it){
-    		delete *it;
-  }
-  Qtiles.clear();
-
-	QString size_= boardSize->toPlainText();
-	QString initMoves_= startingMoves->toPlainText();
-	QString seed_= seedValue->toPlainText();
-	
-	bool ok_1 = true; //*ok is set to false; otherwise *ok is set to true.
-	bool ok_2 = true; //*ok is set to false; otherwise *ok is set to true.
-	bool ok_3 = true; //*ok is set to false; otherwise *ok is set to true.
-		
-	size = size_.toInt(&ok_1,10);
-	initMoves = initMoves_.toInt(&ok_2,10);
-	seed = seed_.toInt(&ok_3,10);
-	
-	if(ok_1 == false){
-		errMsg->setPlainText("Improper Size");
-	}
-	else if(ok_2 == false){
-		errMsg->setPlainText("Improper Starting moves");
-	}
-	else if(ok_3 == false){
-		errMsg->setPlainText("Improper Seed value!"); 
-	}
-	else if(size != 9 && size != 16){
-		errMsg->setPlainText("Improper Size. Size must be either 9 or 16"); 
-	}
-	else if(initMoves < 1 || seed <1){
-		errMsg->setPlainText("Too small Starting moves or Seed value!");
-	}
-	else{
-		errMsg->setPlainText("Game starts"); 
-		createBoard();			
-	}
-	
-	/*cout << "size : " << size << endl;
-	cout << "initMoves : " << initMoves << endl;
-	cout << "seed : " << seed << endl;*/
 }
 
 void MainWindow::MoveTile(int tileNum)
@@ -263,9 +279,9 @@ void MainWindow::MoveTile(int tileNum)
 		b->move(tileNum);
 	}
 	catch(int i){
-		if(i == 0)
+		if(i == 4)
 			errMsg->setPlainText("Improper tile click"); 
-		if(i == 1)
+		else
 			errMsg->setPlainText("Tile has moved"); 
 	}
 	
@@ -316,6 +332,85 @@ void MainWindow::MoveTile(int tileNum)
 		}
 	}
 }
+
+void MainWindow::AnimateTile(int tileNum)
+{
+	// will use these variables in SlidingTile()
+  direction = 0;
+  timerCnt = 0;
+  tempTileNum = tileNum;
+  
+  //cout << "clicking tile num: " << tileNum << endl;
+  
+	try{
+		b->move(tileNum);
+	}
+	catch(int i){
+		// direction number (0:N, 1:W, 2:S, 3:E)
+		if(i==4){
+			direction = 4;
+			errMsg->setPlainText("Improper tile click"); 
+			//cout << "direction: " << direction << endl;
+		}
+		else if(i != 4){
+			if(i == 0) direction = 0;
+			else if(i == 1) direction = 1;
+			else if(i == 2) direction = 2;
+			else if(i == 3) direction = 3;
+			errMsg->setPlainText("Tile has moved"); 
+			//cout << "direction: " << direction << endl;
+	
+			timer->setInterval(speed);
+	    connect(timer,SIGNAL(timeout()),this,SLOT(SlidingTile()));
+ 	    timer->start();
+		}
+	}
+}
+
+void MainWindow::SlidingTile()
+{
+	//cout << "moving in SlidingTile" << endl;
+	int loc=0;
+	int blank=0;
+	
+	for(int i=0;i<Qtiles.size();i++){
+		int temp = Qtiles[i]->getNumber();
+		if(tempTileNum == temp){
+			loc = i;
+		}
+		if(temp == 0){
+			blank = i;
+		}
+	}
+
+	// when timer stops, re-draw the tile
+	if(timerCnt >= (Qtiles[loc]->getLength())*speed){
+		timer->stop();
+		
+		// reset the timer
+		delete timer;
+		timer = new QTimer(this);
+		
+		timerCnt = 0;
+		Qtiles[loc]->cnt = 0;
+		Qtiles[blank]->cnt = 0;
+		
+		if(b->solved() == true){
+			errMsg->setPlainText("Puzzle is solved!");
+			for(int i=0;i<Qtiles.size();i++){
+				Qtiles[i]->disconnect(Qtiles[i],0,0,0);
+			}
+		}
+	}
+	else if(timerCnt < (Qtiles[loc]->getLength())*speed){
+		// moving target tile
+		Qtiles[loc]->move(direction);	
+		// moving black tile
+		Qtiles[blank]->move((direction+2)%4);
+
+		timerCnt++;		
+	}	
+}
  
 void MainWindow::Qcheat()
 {
@@ -328,33 +423,35 @@ void MainWindow::Qcheat()
 	}
 	else if(b->solved() == true){
 		errMsg->setPlainText("Puzzle is solved already");
+		model->clear();
 	}
 	else if(man_heur->isChecked() || out_heur->isChecked()){
 		PuzzleSolver cheat(*b);
 	
 		if(man_heur->isChecked()){
-			errMsg->setPlainText("Manhattan heuristic is executed");
+			errMsg->setPlainText("Manhattan heuristic is executed->calculating");
 			cheat.run(&Man_Heur);
+			errMsg->setPlainText("Manhattan heuristic is executed->finished!");
 		}
 		else if(out_heur->isChecked()){
-			errMsg->setPlainText("Out-of-place heuristic is executed");
+			errMsg->setPlainText("Out-of-place heuristic is executed->calculating");
 			cheat.run(&Out_Heur);
+			errMsg->setPlainText("Out-of-place heuristic is executed->finished");
 		}		
 		
 		// actual solution printing out codes 
 		deque<int> solution = cheat.get_solution();
 		int sol_size = solution.size();
 
-//		QStandardItemModel *model = new QStandardItemModel(1,sol_size,this);
-		QStandardItemModel *model = new QStandardItemModel(sol_size,0,this);
+		//QStandardItemModel for saving solution
+		model = new QStandardItemModel(sol_size,0,this);
 
 		// add items to model and will add this model to the QListView
-
-		cout << endl << "Try this sequence:";
+		//cout << endl << "Try this sequence:";
 		
 		for(int i=0;i<sol_size;i++){
 			QString temp;
-			cout << " " << solution.back();
+			//cout << " " << solution.back();
 			// converting solution integer to QString
 			temp.setNum(solution.back());
 			
@@ -364,7 +461,7 @@ void MainWindow::Qcheat()
 			model->setItem(i,0,itm);
 			solution.pop_back();
 		}
-		cout << endl << "(Expansion = " << cheat.getNumExpansions() << ")" << endl << endl;
+		//cout << endl << "(Expansion = " << cheat.getNumExpansions() << ")" << endl << endl;
 
 		// add model to QListView
 		solList->setModel(model);

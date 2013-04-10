@@ -19,6 +19,9 @@
 #include <QString>
 #include <QGraphicsItem>
 #include <QStandardItemModel>
+#include <QTimer>
+#include <QTimeLine>
+#include <QObject>
 
 #include <stdlib.h>
 #include <iostream>
@@ -68,6 +71,7 @@ private:
     QHBoxLayout *heurLayout; // heuristic radio buttons layout
     
     // etc
+    QStandardItemModel *model; // for saving solList
     QListView *solList; // list for displaying solutions
     QTextEdit *errMsg; // get error message
     
@@ -90,6 +94,11 @@ private:
  		QRadioButton *man_heur;
 		QRadioButton *out_heur;
 		
+    QTimer *timer;
+		double timerCnt;
+		int direction;
+		int tempTileNum;
+			
 		int size, initMoves, seed;
 		Board *b;
 		 
@@ -98,6 +107,8 @@ private:
 public slots:
     void gameStart();
  		void MoveTile(int tileNum);
+ 		void AnimateTile(int tileNum);
+ 		void SlidingTile();
  		void Qcheat();
 
 
