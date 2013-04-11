@@ -4,45 +4,180 @@
 \subsection*{\-Signals}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classGUITile_a2bac4f0555507c82afa2ef1304280006}{void {\bfseries my\-Press\-Signal} (int number)}\label{classGUITile_a2bac4f0555507c82afa2ef1304280006}
-
+void \hyperlink{classGUITile_a2bac4f0555507c82afa2ef1304280006}{my\-Press\-Signal} (int number)
 \end{DoxyCompactItemize}
 \subsection*{\-Public \-Member \-Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classGUITile_a2fea9396767e186463348c1f23f8a1fb}{{\bfseries \-G\-U\-I\-Tile} (int nx, int ny, int w, int h, int n, \-Q\-String \-Qn)}\label{classGUITile_a2fea9396767e186463348c1f23f8a1fb}
-
+\hyperlink{classGUITile_af668a6a94375a0d18e31f4da3c398fa2}{\-G\-U\-I\-Tile} (int nx, int ny, int w, int h, int n)
 \item 
-\hypertarget{classGUITile_a835186265d90bbf4e1b367557cc1dc2a}{void {\bfseries set\-X} (int nx)}\label{classGUITile_a835186265d90bbf4e1b367557cc1dc2a}
-
+void \hyperlink{classGUITile_a835186265d90bbf4e1b367557cc1dc2a}{set\-X} (int nx)
 \item 
-\hypertarget{classGUITile_abf1cdc1adfd9ea9de6944cdd4794e437}{void {\bfseries set\-Y} (int ny)}\label{classGUITile_abf1cdc1adfd9ea9de6944cdd4794e437}
-
+void \hyperlink{classGUITile_abf1cdc1adfd9ea9de6944cdd4794e437}{set\-Y} (int ny)
 \item 
-\hypertarget{classGUITile_aa9bb3eaa1bcfe6032805593db8fb0a86}{int {\bfseries get\-X} ()}\label{classGUITile_aa9bb3eaa1bcfe6032805593db8fb0a86}
-
+int \hyperlink{classGUITile_aa9bb3eaa1bcfe6032805593db8fb0a86}{get\-X} ()
 \item 
-\hypertarget{classGUITile_a22c037d69a48973ea0f71caa65a28f4a}{int {\bfseries get\-Y} ()}\label{classGUITile_a22c037d69a48973ea0f71caa65a28f4a}
-
+int \hyperlink{classGUITile_a22c037d69a48973ea0f71caa65a28f4a}{get\-Y} ()
 \item 
-\hypertarget{classGUITile_a0d7d290c5c0f03b7a2d8493fe4e66bc3}{int {\bfseries get\-Number} ()}\label{classGUITile_a0d7d290c5c0f03b7a2d8493fe4e66bc3}
-
+int \hyperlink{classGUITile_a013181636148bad1ced4e40d9c51ceda}{get\-Length} ()
 \item 
-\hypertarget{classGUITile_aec7dc019a373222a6350ee0e01f6ec5b}{void {\bfseries operator=} (const \hyperlink{classGUITile}{\-G\-U\-I\-Tile} \&rhs)}\label{classGUITile_aec7dc019a373222a6350ee0e01f6ec5b}
-
+int \hyperlink{classGUITile_a0d7d290c5c0f03b7a2d8493fe4e66bc3}{get\-Number} ()
+\item 
+void \hyperlink{classGUITile_a28b29a9e8990e36f7bf58ba0a13a47f4}{move} (int direction)
+\item 
+void \hyperlink{classGUITile_aec7dc019a373222a6350ee0e01f6ec5b}{operator=} (const \hyperlink{classGUITile}{\-G\-U\-I\-Tile} \&rhs)
 \end{DoxyCompactItemize}
 \subsection*{\-Public \-Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{classGUITile_adb41b8360befbd6f7b643aa95f837513}{\-Q\-Graphics\-Simple\-Text\-Item {\bfseries \-Qnumber}}\label{classGUITile_adb41b8360befbd6f7b643aa95f837513}
 
+\item 
+\hypertarget{classGUITile_a82d8f9782e4a85e1461d90338e857944}{int {\bfseries cnt}}\label{classGUITile_a82d8f9782e4a85e1461d90338e857944}
+
 \end{DoxyCompactItemize}
 \subsection*{\-Protected \-Member \-Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classGUITile_a3cbb3943cd6c0c4b42261546d19e20f5}{void {\bfseries mouse\-Press\-Event} (\-Q\-Graphics\-Scene\-Mouse\-Event $\ast$event)}\label{classGUITile_a3cbb3943cd6c0c4b42261546d19e20f5}
-
+void \hyperlink{classGUITile_a3cbb3943cd6c0c4b42261546d19e20f5}{mouse\-Press\-Event} (\-Q\-Graphics\-Scene\-Mouse\-Event $\ast$event)
 \end{DoxyCompactItemize}
+
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classGUITile_af668a6a94375a0d18e31f4da3c398fa2}{\index{\-G\-U\-I\-Tile@{\-G\-U\-I\-Tile}!\-G\-U\-I\-Tile@{\-G\-U\-I\-Tile}}
+\index{\-G\-U\-I\-Tile@{\-G\-U\-I\-Tile}!GUITile@{\-G\-U\-I\-Tile}}
+\subsubsection[{\-G\-U\-I\-Tile}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-G\-U\-I\-Tile\-::\-G\-U\-I\-Tile} (
+\begin{DoxyParamCaption}
+\item[{int}]{nx, }
+\item[{int}]{ny, }
+\item[{int}]{w, }
+\item[{int}]{h, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}}\label{classGUITile_af668a6a94375a0d18e31f4da3c398fa2}
+\-Default constructor 
+\begin{DoxyParams}{\-Parameters}
+{\em nx} & left top location of the tile(x-\/location) \\
+\hline
+{\em ny} & left top location of the tile(y-\/location) \\
+\hline
+{\em w} & width of the tile \\
+\hline
+{\em h} & height of the tile \\
+\hline
+{\em n} & number of the tile \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classGUITile_a013181636148bad1ced4e40d9c51ceda}{\index{\-G\-U\-I\-Tile@{\-G\-U\-I\-Tile}!get\-Length@{get\-Length}}
+\index{get\-Length@{get\-Length}!GUITile@{\-G\-U\-I\-Tile}}
+\subsubsection[{get\-Length}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf \-G\-U\-I\-Tile\-::get\-Length} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGUITile_a013181636148bad1ced4e40d9c51ceda}
+\-Get length of the tile \begin{DoxyReturn}{\-Returns}
+\-Length of the tile (either width or height) 
+\end{DoxyReturn}
+\hypertarget{classGUITile_a0d7d290c5c0f03b7a2d8493fe4e66bc3}{\index{\-G\-U\-I\-Tile@{\-G\-U\-I\-Tile}!get\-Number@{get\-Number}}
+\index{get\-Number@{get\-Number}!GUITile@{\-G\-U\-I\-Tile}}
+\subsubsection[{get\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf \-G\-U\-I\-Tile\-::get\-Number} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGUITile_a0d7d290c5c0f03b7a2d8493fe4e66bc3}
+\-Get the number of the tile \begin{DoxyReturn}{\-Returns}
+\-Tile number 
+\end{DoxyReturn}
+\hypertarget{classGUITile_aa9bb3eaa1bcfe6032805593db8fb0a86}{\index{\-G\-U\-I\-Tile@{\-G\-U\-I\-Tile}!get\-X@{get\-X}}
+\index{get\-X@{get\-X}!GUITile@{\-G\-U\-I\-Tile}}
+\subsubsection[{get\-X}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf \-G\-U\-I\-Tile\-::get\-X} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGUITile_aa9bb3eaa1bcfe6032805593db8fb0a86}
+\-Get x-\/location \begin{DoxyReturn}{\-Returns}
+x-\/location 
+\end{DoxyReturn}
+\hypertarget{classGUITile_a22c037d69a48973ea0f71caa65a28f4a}{\index{\-G\-U\-I\-Tile@{\-G\-U\-I\-Tile}!get\-Y@{get\-Y}}
+\index{get\-Y@{get\-Y}!GUITile@{\-G\-U\-I\-Tile}}
+\subsubsection[{get\-Y}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf \-G\-U\-I\-Tile\-::get\-Y} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGUITile_a22c037d69a48973ea0f71caa65a28f4a}
+\-Get yx-\/location \begin{DoxyReturn}{\-Returns}
+y-\/location 
+\end{DoxyReturn}
+\hypertarget{classGUITile_a3cbb3943cd6c0c4b42261546d19e20f5}{\index{\-G\-U\-I\-Tile@{\-G\-U\-I\-Tile}!mouse\-Press\-Event@{mouse\-Press\-Event}}
+\index{mouse\-Press\-Event@{mouse\-Press\-Event}!GUITile@{\-G\-U\-I\-Tile}}
+\subsubsection[{mouse\-Press\-Event}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-G\-U\-I\-Tile\-::mouse\-Press\-Event} (
+\begin{DoxyParamCaption}
+\item[{\-Q\-Graphics\-Scene\-Mouse\-Event $\ast$}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}\label{classGUITile_a3cbb3943cd6c0c4b42261546d19e20f5}
+\-Inherited mouse click event function \hypertarget{classGUITile_a28b29a9e8990e36f7bf58ba0a13a47f4}{\index{\-G\-U\-I\-Tile@{\-G\-U\-I\-Tile}!move@{move}}
+\index{move@{move}!GUITile@{\-G\-U\-I\-Tile}}
+\subsubsection[{move}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-G\-U\-I\-Tile\-::move} (
+\begin{DoxyParamCaption}
+\item[{int}]{direction}
+\end{DoxyParamCaption}
+)}}\label{classGUITile_a28b29a9e8990e36f7bf58ba0a13a47f4}
+\-Move the tile in proper direction 
+\begin{DoxyParams}{\-Parameters}
+{\em \-Direction} & direction number (0\-:\-N, 1\-:\-W, 2\-:\-S, 3\-:\-E) \\
+\hline
+\end{DoxyParams}
+\hypertarget{classGUITile_a2bac4f0555507c82afa2ef1304280006}{\index{\-G\-U\-I\-Tile@{\-G\-U\-I\-Tile}!my\-Press\-Signal@{my\-Press\-Signal}}
+\index{my\-Press\-Signal@{my\-Press\-Signal}!GUITile@{\-G\-U\-I\-Tile}}
+\subsubsection[{my\-Press\-Signal}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-G\-U\-I\-Tile\-::my\-Press\-Signal} (
+\begin{DoxyParamCaption}
+\item[{int}]{number}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}signal\mbox{]}}}}\label{classGUITile_a2bac4f0555507c82afa2ef1304280006}
+\-Signal for detecting the click of corresponding tile 
+\begin{DoxyParams}{\-Parameters}
+{\em number} & \-Tile number \\
+\hline
+\end{DoxyParams}
+\hypertarget{classGUITile_aec7dc019a373222a6350ee0e01f6ec5b}{\index{\-G\-U\-I\-Tile@{\-G\-U\-I\-Tile}!operator=@{operator=}}
+\index{operator=@{operator=}!GUITile@{\-G\-U\-I\-Tile}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}void \-G\-U\-I\-Tile\-::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf \-G\-U\-I\-Tile} \&}]{rhs}
+\end{DoxyParamCaption}
+)}}\label{classGUITile_aec7dc019a373222a6350ee0e01f6ec5b}
+= operator 
+\begin{DoxyParams}{\-Parameters}
+{\em rhs} & \-Right hand side \hyperlink{classGUITile}{\-G\-U\-I\-Tile} class \\
+\hline
+\end{DoxyParams}
+\hypertarget{classGUITile_a835186265d90bbf4e1b367557cc1dc2a}{\index{\-G\-U\-I\-Tile@{\-G\-U\-I\-Tile}!set\-X@{set\-X}}
+\index{set\-X@{set\-X}!GUITile@{\-G\-U\-I\-Tile}}
+\subsubsection[{set\-X}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-G\-U\-I\-Tile\-::set\-X} (
+\begin{DoxyParamCaption}
+\item[{int}]{nx}
+\end{DoxyParamCaption}
+)}}\label{classGUITile_a835186265d90bbf4e1b367557cc1dc2a}
+\-Set x-\/location 
+\begin{DoxyParams}{\-Parameters}
+{\em nx} & x location of left top of the tile \\
+\hline
+\end{DoxyParams}
+\hypertarget{classGUITile_abf1cdc1adfd9ea9de6944cdd4794e437}{\index{\-G\-U\-I\-Tile@{\-G\-U\-I\-Tile}!set\-Y@{set\-Y}}
+\index{set\-Y@{set\-Y}!GUITile@{\-G\-U\-I\-Tile}}
+\subsubsection[{set\-Y}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-G\-U\-I\-Tile\-::set\-Y} (
+\begin{DoxyParamCaption}
+\item[{int}]{ny}
+\end{DoxyParamCaption}
+)}}\label{classGUITile_abf1cdc1adfd9ea9de6944cdd4794e437}
+\-Set y-\/location 
+\begin{DoxyParams}{\-Parameters}
+{\em ny} & y location of left top of the tile \\
+\hline
+\end{DoxyParams}
 
 
 \-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}

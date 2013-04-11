@@ -42,8 +42,9 @@ MainWindow::MainWindow()  {
 	//aAlg->setFixedSize(100,20);
 	
 	// solution list
-	solList = createSolution();
-	
+	solList = new QListView;
+	solList->setMaximumWidth(130);	
+
 	// error message
 	errMsg = new QTextEdit;
 	errMsg->setMinimumHeight(30);
@@ -145,15 +146,6 @@ QHBoxLayout *MainWindow::createHeurLayout()
 	return heurLayout;			
 }
 
-QListView *MainWindow::createSolution()
-{
-	QListView *solList = new QListView;
-	
-	solList->setMaximumWidth(130);
-	
-	return solList;
-}
-
 void MainWindow::gameStart()
 { 
 	
@@ -236,11 +228,8 @@ void MainWindow::createBoard()
 	
 		// display initial board
 		for(int i=0;i<size;i++){
-			QString Qnumber;
-			Qnumber.setNum(tiles[i]);
-		
 			// don't need to dynamically allocate it.??? yes, lets save these into temp list and delete 
-			tile = new GUITile(length*(i%dim),length*(i/dim),length,length,tiles[i], Qnumber); // creating tiles
+			tile = new GUITile(length*(i%dim),length*(i/dim),length,length,tiles[i]); // creating tiles
 				
 			if(tiles[i] == 0){
 				//tile->setBrush(blkBrush);
@@ -308,10 +297,8 @@ void MainWindow::MoveTile(int tileNum)
 
 	// display board
 	for(int i=0;i<size;i++){
-		QString Qnumber;
-		Qnumber.setNum(tiles[i]);
 		// don't need to dynamically allocate it.??? yes, lets save these into temp list and delete 
-		tile = new GUITile(length*(i%dim),length*(i/dim),length,length,tiles[i], Qnumber); // creating tiles
+		tile = new GUITile(length*(i%dim),length*(i/dim),length,length,tiles[i]); // creating tiles
 		
 		if(tiles[i] == 0){
 			//tile->setBrush(blkBrush);

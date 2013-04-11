@@ -7,9 +7,9 @@
 
 using namespace std;
 
-PuzzleSolver::PuzzleSolver(const Board &b)
+PuzzleSolver::PuzzleSolver(const Board &b) : b_(b)
 {
-	b_ = b;
+	//b_ = b;
 	expansions_ = 0;
 }
 PuzzleSolver::~PuzzleSolver()

@@ -48,13 +48,26 @@ class MainWindow : public QWidget {
     Q_OBJECT
     
 public:
+		/**  Default constructor  \n
+		 *	QWidget, window, will be the biggest screen that will save Gridlayout. \n
+		 *  This Gridlayout contains all top layout, heuristic layout, solution layout, QGraphicscene etc.
+		 */
     explicit MainWindow();
+ 		/**  Default destructor */
     ~MainWindow();
 
+		/** Create the board with using all the private variables */
 		void createBoard();
+		
+		/** Create the top layout that will be contained in Gridlayout 
+		 * 	@return QHBoxLayout that has boxes for input
+	   */
 		QHBoxLayout *createTopLayout();
+		
+		/** Create the heuristic layout that will be contained in Gridlayout
+		 * 	@return QHBoxLayout that has radio buttons for starting algorithm
+	   */
 		QHBoxLayout *createHeurLayout();
-		QListView *createSolution();
 		
     void show();
     
@@ -105,13 +118,26 @@ private:
 		QList<GUITile*> Qtiles;
 		 
 public slots:
+		/** Slot member fuction for starting the game \n
+		 * 	In this function, it will check whether there are incorrect or invalid values
+	   */
     void gameStart();
+    
+    /** Move the tile that has particular number. This is for moving instantly (no sliding)
+		 * 	@param tileNum number of the tile
+	   */
  		void MoveTile(int tileNum);
+
+    /** Move the tile that has particular number. This is for moving in sliding
+		 * 	@param tileNum number of the tile
+	   */
  		void AnimateTile(int tileNum);
+
+ 		/** Actual function that will move the tile little by little considering the timer */
  		void SlidingTile();
+ 		
+ 		/** Function that will show the list of solutions in sequence order */
  		void Qcheat();
-
-
 };
 
 #endif // MAINWINDOW_H

@@ -6,16 +6,18 @@
 
 QFont tempFont("Times", 60, QFont::Bold);
 
-GUITile::GUITile(int nx, int ny, int w, int h, int n, QString Qn) :
+GUITile::GUITile(int nx, int ny, int w, int h, int n) :
 	QGraphicsRectItem(nx, ny, w, h) {
 	x = nx;
 	y = ny;
 	width = w;
 	height = h;
 	number = n;
-	Qnumber.setText(Qn);
+	QString temp;
+	temp.setNum(number);
+	Qnumber.setText(temp);
 	cnt = 0;
-	
+		
 	// setting postion for the number inside of each tile
 	Qnumber.setPos( nx+(w*x_letter_scale), ny+(h*y_letter_scale) );
 	Qnumber.setFont(tempFont);
