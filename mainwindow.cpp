@@ -16,6 +16,7 @@ MainWindow::MainWindow()  {
 	scene = new QGraphicsScene();
 	view = new QGraphicsView( scene );
 	b = NULL;
+	model = NULL;
 
 //	view->setFixedSize(288,288);
 	view->setFixedSize(432,432);
@@ -155,12 +156,15 @@ QListView *MainWindow::createSolution()
 
 void MainWindow::gameStart()
 { 
-
+	
 	// if the game is not the first time, deallocation for previous board is necessary
 	if(b != NULL){
 		delete b;
-		model->clear();
 		b = NULL;
+		if(model != NULL){
+			model->clear();
+			model = NULL;
+		}			
 	}
 	
   for(QList<GUITile*>::iterator it=Qtiles.begin();it!=Qtiles.end();++it){
