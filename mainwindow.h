@@ -98,7 +98,7 @@ private:
 		QTextEdit *startingMoves;
 		QTextEdit *seedValue;
 		
-		// labels for topLayout
+		// labels for topLayout 
 		QLabel *boardSizeLabel;
 	  QLabel *startingMovesLabel;
   	QLabel *seedValueLabel;
