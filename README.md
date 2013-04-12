@@ -10,7 +10,8 @@ The grader should use the following procedure to compile and run the code:
 qmake -project
 qmake
 make
-./puzzle_kyuhyun
+./puzzle_kyuhyun (or ./name of the folder)
+i.e. if the name of the folder is "test_qtpuzzle", shoud type "./test_qtpuzzle" in order to run the program
 ```
 In order to make doxygen file, use the following precedure
 ```
