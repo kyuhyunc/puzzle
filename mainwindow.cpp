@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #define x_letter_scale 0.32
 #define y_letter_scale 0.18
-#define speed 1
+#define speed 1 
 
 QBrush redBrush(Qt::red);
 QBrush blueBrush(Qt::blue);
